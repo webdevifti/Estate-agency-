@@ -33,14 +33,17 @@
                 <div class="mb-3">
                     <label for="">Property Name</label>
                     <input type="text" name="property_name" placeholder="Property Name" class="form-control">
+                    @error('property_name') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
                 <div class="mb-3">
                     <label for="">Property Price</label>
                     <input type="text" name="property_price" placeholder="Property Price" class="form-control">
+                    @error('property_price') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
                 <div class="mb-3">
                     <label for="">Property Location/Address</label>
                     <input type="text" name="property_location" placeholder="Property Location or Address" class="form-control">
+                    @error('property_location') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
@@ -54,10 +57,12 @@
                                 <option value="flat">flat</option>
                                 <option value="room">Room</option>
                             </select>
+                            @error('property_type') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
                             <label for="">Property Area</label>
                            <input type="text" placeholder="Property Area" name="property_area" class="form-control">
+                           @error('property_area') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
                             <label for="">Property Garage</label>
@@ -67,6 +72,7 @@
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                             </select>
+                            @error('property_garage') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
@@ -77,6 +83,7 @@
                                 <option value="sale">Sale</option>
                                 <option value="rent">Rent</option>
                             </select>
+                            @error('property_status') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
                             <label for="">Property Beds</label>
@@ -93,6 +100,7 @@
                                 <option value="9">9</option>
                                 <option value="10">10</option>
                             </select>
+                            @error('property_beds') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
                             <label for="">Property Baths</label>
@@ -104,15 +112,22 @@
                                 <option value="4">4</option>
                                 <option value="5">5</option>
                             </select>
+                            @error('property_baths') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="">Property Description</label>
                     <textarea name="property_description"  cols="30" rows="5" class="form-control" placeholder="Property Description"></textarea>
+                    @error('property_description') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
            </div>
            <div class="col-md-4 col-lg-4">
+            <div class="mb-3 mt-3">
+                <h5>Add Property Thumbnail</h5>
+                <input name="property_thumbnail" type="file">
+                @error('property_thumbnail') <span class="text-danger">{{ $message }}</span> @enderror
+              </div>
               <div class="mb-3 mt-3">
                 <h5>Add Property Images</h5>
                 <div class="row">
@@ -151,6 +166,7 @@
                     <option value="Internet">Internet</option>
                     <option value="Concrete Flooring">Concrete Flooring</option>
                 </select>
+                @error('amenities') <span class="text-danger">{{ $message }}</span> @enderror
               </div>
            </div>
         </div>

@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
-            $table->integer('property_unid');
+            $table->string('property_unid');
             $table->integer('agent_id');
             $table->string('propert_name');
             $table->string('property_slug');
-            $table->string('property_thumbnail');
+            $table->string('property_thumbnail')->nullable();
             $table->longText('property_description');
             $table->string('property_location');
             $table->integer('property_price');
