@@ -38,6 +38,8 @@ Route::post('/agent/pass/update', [AgentController::class, 'passwordUpdate'])->n
 Route::post('/agent/profile/update', [AgentController::class, 'profileUpdate'])->name('agent.profile.update');
 Route::post('/agent/logout', [AgentController::class, 'logout'])->name('agent.logout');
 Route::post('/agent/login',[AgentController::class, 'login'])->name('agent.login');
+Route::get('/agent/property/add', [PropertiesController::class, 'create'])->name('add.property');
+Route::post('/agent/property/store', [PropertiesController::class, 'store'])->name('agent.store.property');
 
 Auth::routes(['register' => false]);
 

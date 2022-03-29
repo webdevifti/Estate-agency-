@@ -2,6 +2,7 @@
 @section('page_title', 'My Account')
 
 @section('MainContent')
+<main id="main">
 <!-- ======= Intro Single ======= -->
 <section class="intro-single">
     <div class="container">
@@ -158,4 +159,5 @@
     </div>
   </div>
   </section>
+</main>
 @endsection

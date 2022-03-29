@@ -15,4 +15,12 @@ class PropertiesController extends Controller
     public function show(){
         return view('property-single');
     }
+
+    public function create(){
+        return view('create-property');
+    }
+
+    public function store(Request $request){
+        dd($request->all());
+    }
 }

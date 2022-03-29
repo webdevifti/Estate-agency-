@@ -24,6 +24,8 @@
 
   <!-- Template Main CSS File -->
   <link href="{{ asset('frontend/assets/css/style.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css" integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q==" crossorigin="anonymous"
+  referrerpolicy="no-referrer" />
 
   <style>
     .btn-logout{
@@ -31,6 +33,20 @@
       color: #fff !important;
       border-radius: 10px;
       padding: 8px 15px;
+    }
+    .btn-add-property{
+      text-decoration: none;
+      background-color: #000000 !important;
+      color: #ffffff !important;
+      border-radius: 0;
+      letter-spacing: 0.05rem;
+    }
+    .btn-add-more{
+        text-decoration: none;
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        border-radius: 0;
+        letter-spacing: 0.05rem;
     }
   </style>
 
@@ -170,15 +186,15 @@
             <a class="nav-link {{ (request()->is('agents')) ? 'active': '' }}" href="{{ route('agents') }}">Our Agents</a>
           </li>
 
-          
-
-          
           <li class="nav-item">
             <a class="nav-link {{ (request()->is('contact-us')) ? 'active': '' }} " href="{{ route('contact') }}">Contact</a>
           </li>
           @if(session()->has('Loggedagent'))
           <li class="nav-item">
             <a href="{{ route('agent.account') }}" class="btn btn-b-n">My Account</a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('add.property') }}" class="btn btn-add-property">Add Property</a>
           </li>
           @else
           <li class="nav-item">
@@ -355,6 +371,10 @@
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
   <!-- Vendor JS Files -->
   <script src="{{ asset('frontend/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ asset('frontend/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
@@ -362,7 +382,13 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js" integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+  <script>
+    $('select').selectpicker();
+  </script>
+
+  @yield('footer_script')
 </body>
 
 </html>
