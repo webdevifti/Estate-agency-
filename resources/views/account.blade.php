@@ -45,6 +45,16 @@
             {{ session()->get('pass_error') }}
         </div>
       @endif
+      @if(session()->has('update_error'))
+        <div class="alert alert-danger">
+            {{ session()->get('update_error') }}
+        </div>
+      @endif
+      @if(session()->has('update_success'))
+        <div class="alert alert-success">
+            {{ session()->get('update_success') }}
+        </div>
+      @endif
     <ul class="nav nav-pills-a nav-pills mb-3 section-t3" id="pills-tab" role="tablist">
     <li class="nav-item">
         <a class="nav-link active" id="pills-account-tab" data-bs-toggle="pill" href="#pills-account" role="tab" aria-controls="pills-account" aria-selected="false">My Profile</a>
@@ -67,57 +77,61 @@
     <div class="tab-content" id="pills-tabContent">
      
       <div class="tab-pane fade show active" id="pills-account" role="tabpanel" aria-labelledby="pills-account-tab">
-            <form action="">
-               
+            <form action="{{ route('agent.profile.update') }}" method="POST" enctype="multipart/form-data">
+              @csrf
                 <div class="row">
                     <div class="col-md-6 col-lg-6">
+                      <input type="hidden" name="id" value="{{ $get_logged_agent->id }}">
                         <div class="mb-3">
-                            <label for="">My photo</label>
-                            <input type="file" name="agent_photo" class="form-control">
+                            <div class="mb-3 mt-3" style="text-align: center">
+                              <img style="height: 100px;width: 100px;border-radius: 50%;object-fit: contain;" src="{{ asset('uploads/agents/'.$get_logged_agent->agent_photo) }}" id="pic" alt="">
+                            </div>
+                            <input type="file" oninput="pic.src=window.URL.createObjectURL(this.files[0])"  name="agent_photo" class="form-control">
+                            @error('agent_photo') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
                             <label for="">My Name</label>
-                            <input type="text" value="{{ $get_logged_agent->agent_fullname }}" name="agent_name" class="form-control">
+                            <input type="text" value="{{ $get_logged_agent->agent_fullname }}" name="agent_name" class="form-control" placeholder="Your Fullname">
                         </div>
                         <div class="mb-3">
                             <label for="">My Email</label>
-                            <input type="email"  value="{{ $get_logged_agent->agent_email }}" name="agent_email" class="form-control">
+                            <input type="email"  value="{{ $get_logged_agent->agent_email }}" name="agent_email" class="form-control" placeholder="Your Email address">
                         </div>
                         <div class="mb-3">
                             <label for="">My Instagram</label>
-                            <input type="text"  value="{{ $get_logged_agent->agent_instagram }}" name="agent_instagram" class="form-control">
+                            <input type="text"  value="{{ $get_logged_agent->agent_instagram }}" name="agent_instagram" class="form-control" placeholder="Your Instagram username">
                         </div>
                         <div class="mb-3">
                             <label for="">My Linkedin</label>
-                            <input type="text" name="agent_linkedin"  value="{{ $get_logged_agent->agent_linkedin }}" class="form-control">
+                            <input type="text" name="agent_linkedin"  value="{{ $get_logged_agent->agent_linkedin }}" class="form-control" placeholder="Your Linkedin profile link">
                         </div>
                        
                     </div>
                     <div class="col-md-6 col-lg-6">
                         <div class="mb-3">
                             <label for="">My Profession</label>
-                            <input type="text" name="agent_profession"  value="{{ $get_logged_agent->agent_profession }}" class="form-control">
+                            <input type="text" name="agent_profession"  value="{{ $get_logged_agent->agent_profession }}" class="form-control" placeholder="Your Profession">
                         </div>
                         <div class="mb-3">
                             <label for="">My Contact Number</label>
-                            <input type="text" name="agent_contact_number"  value="{{ $get_logged_agent->agent_contact_number }}" class="form-control">
+                            <input type="text" name="agent_contact_number"  value="{{ $get_logged_agent->agent_contact_number }}" class="form-control" placeholder="Your contact number">
                         </div>
                         <div class="mb-3">
                             <label for="">My Facebook</label>
-                            <input type="text"  value="{{ $get_logged_agent->agent_facebook }}" name="agent_facebook" class="form-control">
+                            <input type="text"  value="{{ $get_logged_agent->agent_facebook }}" name="agent_facebook" class="form-control" placeholder="Your facebook profile link">
                         </div>
                         <div class="mb-3">
                             <label for="">My Twitter</label>
-                            <input type="text"  value="{{ $get_logged_agent->agent_twitter }}" name="agent_twitter" class="form-control">
+                            <input type="text"  value="{{ $get_logged_agent->agent_twitter }}" name="agent_twitter" class="form-control" placeholder="Your twitter username">
                         </div>
                         <div class="mb-3">
                             <label for="">My Skype</label>
-                            <input type="text" name="agent_skype"  value="{{ $get_logged_agent->agent_skype }}" class="form-control">
+                            <input type="text" name="agent_skype"  value="{{ $get_logged_agent->agent_skype }}" class="form-control" placeholder="Your skyp ID">
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="">My Description</label>
-                        <textarea name="agent_description" cols="30" rows="5" class="form-control">{{ $get_logged_agent->agent_description }}</textarea>
+                        <textarea name="agent_description" placeholder="Describe yourself" cols="30" rows="5" class="form-control">{{ $get_logged_agent->agent_description }}</textarea>
                     </div>
                 </div>
                <button type="submit" name="account_update" class="btn btn-a">Save</button>

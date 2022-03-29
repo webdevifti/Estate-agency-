@@ -35,6 +35,7 @@ Route::post('/joining-agent', [AgentController::class, 'registerAgent'])->name('
 Route::get('/agent/verify/email', [AgentController::class, 'verifyAgent']);
 Route::get('/agent/account', [AgentController::class, 'account'])->name('agent.account');
 Route::post('/agent/pass/update', [AgentController::class, 'passwordUpdate'])->name('agent.pass.update');
+Route::post('/agent/profile/update', [AgentController::class, 'profileUpdate'])->name('agent.profile.update');
 Route::post('/agent/logout', [AgentController::class, 'logout'])->name('agent.logout');
 Route::post('/agent/login',[AgentController::class, 'login'])->name('agent.login');
 

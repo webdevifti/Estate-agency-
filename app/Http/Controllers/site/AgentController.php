@@ -120,4 +120,49 @@ class AgentController extends Controller
         request()->session()->put('Loggedagent');
         return redirect('/');
     }
+
+    public function profileUpdate(Request $request){
+        if($request->account_update == null){
+
+            $agent = Agent::find($request->id);
+
+            if($request->agent_photo){
+                $request->validate([
+                    'agent_photo' => 'mimes:jpg,png,jpeg'
+                ]);
+                $extension = $request->agent_photo->getClientOriginalExtension();
+                $imageName = $request->id.'.'.$extension;
+                $image_path = public_path('uploads/agents/'.$agent->agent_photo);
+                if (file_exists($image_path)) {
+                    unlink($image_path);
+                }
+                $agent->agent_photo = $imageName;
+                $agent_update = $agent->save();
+                $request->agent_photo->move(public_path('uploads/agents/'), $imageName);
+                if($agent_update){
+                    return back()->with('update_success','Save Changed');
+                }else{
+                    return back()->with('update_error','Something happened wrong!');
+                }
+            }else{
+                $agent->agent_fullname = $request->agent_name;
+                $agent->agent_profession = $request->agent_profession;
+                $agent->agent_description = $request->agent_description;
+                $agent->agent_contact_number = $request->agent_contact_number;
+                $agent->agent_email = $request->agent_email;
+                $agent->agent_skype = $request->agent_skype;
+                $agent->agent_facebook = $request->agent_facebook;
+                $agent->agent_twitter = $request->agent_twitter;
+                $agent->agent_instagram = $request->agent_instagram;
+                $agent->agent_linkedin = $request->agent_linkedin;
+                $agent_update = $agent->save();
+                if($agent_update){
+                    return back()->with('update_success','Save Changed');
+                }else{
+                    return back()->with('update_error','Something happened wrong!');
+    
+                }
+            }
+        }
+    }
 }
