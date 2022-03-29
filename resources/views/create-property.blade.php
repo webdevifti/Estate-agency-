@@ -26,6 +26,12 @@
         </div>
     </section><!-- End Intro Single-->
     <section class="container">
+        @if(session()->has('success'))
+            <div class="alert alert-success mb-4">{{ session()->get('success') }}</div>
+        @endif
+        @if(session()->has('error'))
+            <div class="alert alert-danger mb-4">{{ session()->get('error') }}</div>
+        @endif
         <form action="{{ route('agent.store.property') }}" method="POST" enctype="multipart/form-data">
             @csrf
         <div class="row">
