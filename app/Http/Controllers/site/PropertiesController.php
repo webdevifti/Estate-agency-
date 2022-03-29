@@ -17,7 +17,26 @@ class PropertiesController extends Controller
 {
     //
     public function index(){
-        $get_all_properties = Property::orderBy('created_at', 'DESC')->paginate(9);
+        $get_all_properties = Property::paginate(9);
+        if(request()->query('sort') !== null){
+            $sort = request()->query('sort');
+            if($sort == 'asc_to_desc'){
+                $get_all_properties = Property::orderBy('created_at','ASC')->paginate(9);
+            }else if($sort == 'desc_to_asc'){
+                $get_all_properties = Property::orderBy('created_at','DESC')->paginate(9);
+            }else if($sort == 'for_rent'){
+                $get_all_properties = Property::where('property_status','rent')->paginate(9);
+            }
+            else if($sort == 'for_sale'){
+                $get_all_properties = Property::where('property_status','sale')->paginate(9);
+            }
+            else if($sort == 'price_asc'){
+                $get_all_properties = Property::orderBy('property_price','ASC')->paginate(9);
+            }
+            else if($sort == 'price_desc'){
+                $get_all_properties = Property::orderBy('property_price','DESC')->paginate(9);
+            }
+        }
         return view('property-grid', compact('get_all_properties'));
     }
 

@@ -36,11 +36,14 @@
           <div class="col-sm-12">
             <div class="grid-option">
               <form>
-                <select class="custom-select">
+                <select onchange="sort_product()" id="sortby" class="custom-select">
                   <option selected>All</option>
-                  <option value="1">New to Old</option>
-                  <option value="2">For Rent</option>
-                  <option value="3">For Sale</option>
+                  <option value="asc_to_desc">New to Old</option>
+                  <option value="desc_to_asc">Old to New</option>
+                  <option value="for_rent">For Rent</option>
+                  <option value="for_sale">For Sale</option>
+                  <option value="price_asc">Price High to Low</option>
+                  <option value="price_desc">Price Low to High</option>
                 </select>
               </form>
             </div>
@@ -93,8 +96,9 @@
             </div>
           </div>
           @endforeach
+          {{ $get_all_properties->links() }}
         </div>
-        <div class="row">
+        {{-- <div class="row">
           <div class="col-sm-12">
             <nav class="pagination-a">
               <ul class="pagination justify-content-end">
@@ -120,11 +124,24 @@
               </ul>
             </nav>
           </div>
-        </div>
+        </div> --}}
       </div>
     </section><!-- End Property Grid Single-->
   @else
   <h6>There is no property</h6>
 @endif
   </main><!-- End #main -->
+  <form id="filterForm">
+    <input type="hidden" name="sort" id="sort">
+</form>
+@endsection
+
+@section('footer_script')
+<script>
+        function sort_product(){
+            var sort_by_value = $('#sortby').val();
+            $('#sort').val(sort_by_value);
+            $('#filterForm').submit();
+        }
+</script>
 @endsection
