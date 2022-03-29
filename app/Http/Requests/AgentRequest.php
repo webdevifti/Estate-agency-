@@ -26,7 +26,7 @@ class AgentRequest extends FormRequest
         return [
             'fullname' => 'required',
             'agent_email' => 'required|unique:agents',
-            'password' => 'required ',
+            'password' => 'required|min:6|max:20',
             'confirm_password' => 'required'
         ];
     }

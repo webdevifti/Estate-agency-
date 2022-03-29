@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\site\AboutController;
 use App\Http\Controllers\site\AgentController;
 use App\Http\Controllers\site\BlogController;
@@ -20,9 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about-us', [AboutController::class, 'index'])->name('about');
 Route::get('/contact-us', [ContactController::class, 'index'])->name('contact');
 Route::get('/properties', [PropertiesController::class, 'index'])->name('properties');
@@ -37,6 +36,7 @@ Route::get('/agent/verify/email', [AgentController::class, 'verifyAgent']);
 Route::get('/agent/account', [AgentController::class, 'account'])->name('agent.account');
 Route::post('/agent/pass/update', [AgentController::class, 'passwordUpdate'])->name('agent.pass.update');
 Route::post('/agent/logout', [AgentController::class, 'logout'])->name('agent.logout');
+Route::post('/agent/login',[AgentController::class, 'login'])->name('agent.login');
 
 Auth::routes(['register' => false]);
 

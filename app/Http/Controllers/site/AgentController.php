@@ -53,6 +53,37 @@ class AgentController extends Controller
         }
     }
 
+    public function login(Request $request){
+        if($request->login == null){
+
+            $request->validate([
+                'email' => 'required',
+                'password' => 'required'
+            ]);
+
+            $check_agent = Agent::where('agent_email', $request->email)->first();
+            if($check_agent){
+                if(Hash::check($request->password, $check_agent->agent_password)){
+                    if($check_agent->agent_status != 1){
+                        return back()->with('status_wrong','Account Deactivated');
+                    }else{
+                        if($check_agent->agent_is_verified != 1){
+                            return back()->with('verify_wrong','Account Not Verified, Check your email, where verification link has been sended.');
+                        }else{
+                            request()->session()->put('Loggedagent', $check_agent->id);
+                            return redirect('/');
+                        }
+                    }
+                }else{
+                    return back()->with('pass_wrong','Password Invalied');
+                }
+            }else{
+                return back()->with('email_wrong','Email Not Found!');
+
+            }
+        }
+    }
+
     public function verifyAgent(){
         
         $code = request()->query('code');

@@ -56,7 +56,7 @@
         <a class="nav-link" id="pills-password-tab" data-bs-toggle="pill" href="#pills-password" role="tab" aria-controls="pills-password" aria-selected="false">Password Change</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('agent.logout') }}"
+        <a class="nav-link btn-logout" href="{{ route('agent.logout') }}"
         onclick="event.preventDefault();
                       document.getElementById('agent_logout_form').submit();">Sign Out</a>
                       <form id="agent_logout_form" action="{{ route('agent.logout') }}" method="POST" class="d-none">

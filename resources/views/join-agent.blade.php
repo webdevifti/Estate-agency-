@@ -71,16 +71,39 @@
                 </div>
                 <div class="col-md-6 section-md-t3" style="padding: 20px;border-radius: 10px;">
                     <h3 class="mb-3">Login Into Your Account</h3>
-                    <form action="" method="post" role="form" class="php-email-form">
+                    @if(session()->has('pass_wrong'))
+                      <div class="alert alert-danger">
+                        {{ session()->get('pass_wrong') }}
+                      </div>
+                    @endif
+                    @if(session()->has('email_wrong'))
+                      <div class="alert alert-danger">
+                        {{ session()->get('email_wrong') }}
+                      </div>
+                    @endif
+                    @if(session()->has('verify_wrong'))
+                      <div class="alert alert-danger">
+                        {{ session()->get('verify_wrong') }}
+                      </div>
+                    @endif
+                    @if(session()->has('status_wrong'))
+                      <div class="alert alert-danger">
+                        {{ session()->get('status_wrong') }}
+                      </div>
+                    @endif
+                    <form action="{{ route('agent.login') }}" method="POST">
+                      @csrf
                         <div class="row">
                           <div class="col-md-12 mb-3">
                             <div class="form-group">
                               <input name="email" type="email" class="form-control form-control-lg form-control-a" placeholder="Your Email" required>
+                              @error('email') <span class="text-danger">{{ $message }}</span>@enderror
                             </div>
                           </div>
                           <div class="col-md-12 mb-3">
                             <div class="form-group">
                               <input name="password" type="password" class="form-control form-control-lg form-control-a" placeholder="Your Password" required>
+                              @error('password') <span class="text-danger">{{ $message }}</span>@enderror
                             </div>
                           </div>
       

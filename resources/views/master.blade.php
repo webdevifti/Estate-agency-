@@ -25,6 +25,15 @@
   <!-- Template Main CSS File -->
   <link href="{{ asset('frontend/assets/css/style.css') }}" rel="stylesheet">
 
+  <style>
+    .btn-logout{
+      background-color: rgb(18, 168, 56) !important;
+      color: #fff !important;
+      border-radius: 10px;
+      padding: 8px 15px;
+    }
+  </style>
+
   <!-- =======================================================
   * Template Name: EstateAgency - v4.7.0
   * Template URL: https://bootstrapmade.com/real-estate-agency-bootstrap-template/
