@@ -1,4 +1,5 @@
 @extends('master')
+@section('page_title', 'Property | '.$get_signle_property->property_name)
 @section('MainContent')
   <main id="main">
 
@@ -8,8 +9,8 @@
         <div class="row">
           <div class="col-md-12 col-lg-8">
             <div class="title-single-box">
-              <h1 class="title-single">304 Blaster Up</h1>
-              <span class="color-text-a">Chicago, IL 606543</span>
+              <h1 class="title-single"> {{ $get_signle_property->property_name }}</h1>
+              <span class="color-text-a"> {{ $get_signle_property->property_location }}</span>
             </div>
           </div>
           <div class="col-md-12 col-lg-4">
@@ -22,7 +23,7 @@
                   <a href="{{ route('properties') }}">Properties</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                  304 Blaster Up
+                  {{ $get_signle_property->property_name }}
                 </li>
               </ol>
             </nav>
@@ -38,12 +39,13 @@
           <div class="col-lg-8">
             <div id="property-single-carousel" class="swiper">
               <div class="swiper-wrapper">
-                <div class="carousel-item-b swiper-slide">
-                  <img src="{{ asset('frontend/assets/img/slide-1.jpg') }}" alt="">
-                </div>
-                <div class="carousel-item-b swiper-slide">
-                  <img src="{{ asset('frontend/assets/img/slide-2.jpg') }}" alt="">
-                </div>
+                @if($get_images)
+                @foreach($get_images as $image)
+                  <div class="carousel-item-b swiper-slide">
+                    <img src="{{ asset('uploads/properties/propertyimages/'.$image->image) }}" alt="">
+                  </div>
+                @endforeach
+                @endif
               </div>
             </div>
             <div class="property-single-carousel-pagination carousel-pagination"></div>
@@ -61,7 +63,7 @@
                       <span class="bi bi-cash">$</span>
                     </div>
                     <div class="card-title-c align-self-center">
-                      <h5 class="title-c">15000</h5>
+                      <h5 class="title-c"> {{ $get_signle_property->property_price }}</h5>
                     </div>
                   </div>
                 </div>
@@ -81,33 +83,33 @@
                       </li>
                       <li class="d-flex justify-content-between">
                         <strong>Location:</strong>
-                        <span>Chicago, IL 606543</span>
+                        <span> {{ $get_signle_property->property_location }}</span>
                       </li>
                       <li class="d-flex justify-content-between">
                         <strong>Property Type:</strong>
-                        <span>House</span>
+                        <span> {{ $get_signle_property->property_type }}</span>
                       </li>
                       <li class="d-flex justify-content-between">
                         <strong>Status:</strong>
-                        <span>Sale</span>
+                        <span> {{ $get_signle_property->property_status }}</span>
                       </li>
                       <li class="d-flex justify-content-between">
                         <strong>Area:</strong>
-                        <span>340m
+                        <span> {{ $get_signle_property->property_area }}m
                           <sup>2</sup>
                         </span>
                       </li>
                       <li class="d-flex justify-content-between">
                         <strong>Beds:</strong>
-                        <span>4</span>
+                        <span> {{ $get_signle_property->property_beds }}</span>
                       </li>
                       <li class="d-flex justify-content-between">
                         <strong>Baths:</strong>
-                        <span>2</span>
+                        <span> {{ $get_signle_property->property_baths }}</span>
                       </li>
                       <li class="d-flex justify-content-between">
                         <strong>Garage:</strong>
-                        <span>1</span>
+                        <span> {{ $get_signle_property->property_garages }}</span>
                       </li>
                     </ul>
                   </div>
@@ -122,18 +124,7 @@
                   </div>
                 </div>
                 <div class="property-description">
-                  <p class="description color-text-a">
-                    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit
-                    neque, auctor sit amet
-                    aliquam vel, ullamcorper sit amet ligula. Cras ultricies ligula sed magna dictum porta.
-                    Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt
-                    nibh pulvinar quam id dui posuere blandit.
-                  </p>
-                  <p class="description color-text-a no-margin">
-                    Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Donec rutrum congue leo eget
-                    malesuada. Quisque velit nisi,
-                    pretium ut lacinia in, elementum id enim. Donec sollicitudin molestie malesuada.
-                  </p>
+                  {{ $get_signle_property->property_description }}
                 </div>
                 <div class="row section-t3">
                   <div class="col-sm-12">
@@ -144,20 +135,16 @@
                 </div>
                 <div class="amenities-list color-text-a">
                   <ul class="list-a no-margin">
-                    <li>Balcony</li>
-                    <li>Outdoor Kitchen</li>
-                    <li>Cable Tv</li>
-                    <li>Deck</li>
-                    <li>Tennis Courts</li>
-                    <li>Internet</li>
-                    <li>Parking</li>
-                    <li>Sun Room</li>
-                    <li>Concrete Flooring</li>
+                    @foreach($get_amenity as $l)
+                    <li>{{ $l->amenitity }}</li>
+
+                    @endforeach
                   </ul>
                 </div>
               </div>
             </div>
           </div>
+          @if($get_properties_attr->count() > 0)
           <div class="col-md-10 offset-md-1">
             <ul class="nav nav-pills-a nav-pills mb-3 section-t3" id="pills-tab" role="tablist">
               <li class="nav-item">
@@ -172,16 +159,17 @@
             </ul>
             <div class="tab-content" id="pills-tabContent">
               <div class="tab-pane fade show active" id="pills-video" role="tabpanel" aria-labelledby="pills-video-tab">
-                <iframe src="https://player.vimeo.com/video/73221098" width="100%" height="460" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                <iframe src="{{ $get_properties_attr->property_video }}" width="100%" height="460" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
               </div>
               <div class="tab-pane fade" id="pills-plans" role="tabpanel" aria-labelledby="pills-plans-tab">
-                <img src="{{ asset('frontend/assets/img/plan2.jpg') }}" alt="" class="img-fluid">
+                <img src="{{ asset('uploads/properties/floorimages/'.$get_properties_attr->property_floor_plan) }}" alt="" class="img-fluid">
               </div>
               <div class="tab-pane fade" id="pills-map" role="tabpanel" aria-labelledby="pills-map-tab">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937950147!2d-73.98731968482413!3d40.75889497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes+Square!5e0!3m2!1ses-419!2sve!4v1510329142834" width="100%" height="460" frameborder="0" style="border:0" allowfullscreen></iframe>
+                <iframe src="{{ $get_properties_attr->property_ubication }}" width="100%" height="460" frameborder="0" style="border:0" allowfullscreen></iframe>
               </div>
             </div>
           </div>
+          @endif
           <div class="col-md-12">
             <div class="row section-t3">
               <div class="col-sm-12">
@@ -192,56 +180,64 @@
             </div>
             <div class="row">
               <div class="col-md-6 col-lg-4">
-                <img src="{{ asset('frontend/assets/img/agent-4.jpg') }}" alt="" class="img-fluid">
+                <img src="{{ asset('uploads/agents/'.$get_this_property_agent_info->agent_photo) }}" alt="" class="img-fluid">
               </div>
               <div class="col-md-6 col-lg-4">
                 <div class="property-agent">
-                  <h4 class="title-agent">Anabella Geller</h4>
+                  <h4 class="title-agent">{{ $get_this_property_agent_info->agent_fullname }}</h4>
                   <p class="color-text-a">
-                    Nulla porttitor accumsan tincidunt. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet
-                    dui. Quisque velit nisi,
-                    pretium ut lacinia in, elementum id enim.
+                    {{ $get_this_property_agent_info->agent_description }}
                   </p>
                   <ul class="list-unstyled">
+                    @if($get_this_property_agent_info->agent_contact_number)
                     <li class="d-flex justify-content-between">
                       <strong>Phone:</strong>
-                      <span class="color-text-a">(222) 4568932</span>
+                      <span class="color-text-a">{{ $get_this_property_agent_info->agent_contact_number }}</span>
                     </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>Mobile:</strong>
-                      <span class="color-text-a">777 287 378 737</span>
-                    </li>
+                   @endif
+                   @if($get_this_property_agent_info->agent_email)
                     <li class="d-flex justify-content-between">
                       <strong>Email:</strong>
-                      <span class="color-text-a">annabella@example.com</span>
+                      <span class="color-text-a">{{ $get_this_property_agent_info->agent_email }}</span>
                     </li>
+                    @endif
+                    @if($get_this_property_agent_info->agent_skype)
                     <li class="d-flex justify-content-between">
                       <strong>Skype:</strong>
-                      <span class="color-text-a">Annabela.ge</span>
+                      <span class="color-text-a">{{ $get_this_property_agent_info->agent_skype }}</span>
                     </li>
+                    @endif
                   </ul>
                   <div class="socials-a">
                     <ul class="list-inline">
+                      @if($get_this_property_agent_info->agent_facebook)
                       <li class="list-inline-item">
-                        <a href="#">
+                        <a href="{{ $get_this_property_agent_info->agent_facebook }}">
                           <i class="bi bi-facebook" aria-hidden="true"></i>
                         </a>
                       </li>
+                      @endif
+                      @if($get_this_property_agent_info->agent_twitter )
                       <li class="list-inline-item">
-                        <a href="#">
+                        <a href="{{ $get_this_property_agent_info->agent_twitter }}">
                           <i class="bi bi-twitter" aria-hidden="true"></i>
                         </a>
                       </li>
+                      @endif
+                      @if($get_this_property_agent_info->agent_instagram)
                       <li class="list-inline-item">
-                        <a href="#">
+                        <a href="{{ $get_this_property_agent_info->agent_instagram }}">
                           <i class="bi bi-instagram" aria-hidden="true"></i>
                         </a>
                       </li>
+                      @endif
+                      @if($get_this_property_agent_info->agent_linkedi)
                       <li class="list-inline-item">
-                        <a href="#">
+                        <a href="{{ $get_this_property_agent_info->agent_linkedin }}">
                           <i class="bi bi-linkedin" aria-hidden="true"></i>
                         </a>
                       </li>
+                      @endif
                     </ul>
                   </div>
                 </div>

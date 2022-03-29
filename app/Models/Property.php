@@ -10,4 +10,8 @@ class Property extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    // public function relationWithAmenity(){
+    //     return $this->hasMany(PropertyAmenity::class, 'property_id');
+    // }
 }

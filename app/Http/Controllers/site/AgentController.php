@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AgentRequest;
 use App\Mail\AgentWelcomeMail;
 use App\Models\Agent;
+use App\Models\Property;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -102,7 +103,8 @@ class AgentController extends Controller
     public function account(){
         $agent_id = session('Loggedagent');
         $get_logged_agent = Agent::where('id', $agent_id)->first();
-        return view('account', compact('get_logged_agent'));
+        $get_logged_agent_property = Property::where('agent_id', $agent_id)->get();
+        return view('account', compact('get_logged_agent','get_logged_agent_property'));
     }
 
     public function passwordUpdate(Request $request){

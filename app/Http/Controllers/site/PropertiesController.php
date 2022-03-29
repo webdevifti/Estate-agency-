@@ -4,6 +4,7 @@ namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PropertyRequest;
+use App\Models\Agent;
 use App\Models\Property;
 use App\Models\PropertyAmenity;
 use App\Models\PropertyAttribute;
@@ -16,11 +17,17 @@ class PropertiesController extends Controller
 {
     //
     public function index(){
-        return view('property-grid');
+        $get_all_properties = Property::orderBy('created_at', 'DESC')->paginate(9);
+        return view('property-grid', compact('get_all_properties'));
     }
 
-    public function show(){
-        return view('property-single');
+    public function show($slug){
+        $get_signle_property = Property::where('property_slug', $slug)->first();
+        $get_amenity = PropertyAmenity::where('property_id', $get_signle_property->id)->get();
+        $get_images = PropertyImage::where('property_id', $get_signle_property->id)->get();
+        $get_this_property_agent_info = Agent::where('id', $get_signle_property->agent_id)->first();
+        $get_properties_attr = PropertyAttribute::where('property_id', $get_signle_property->id)->get();
+        return view('property-single', compact('get_signle_property','get_amenity','get_images','get_this_property_agent_info','get_properties_attr'));
     }
 
     public function create(){
@@ -68,10 +75,10 @@ class PropertiesController extends Controller
             if($request->hasfile('property_images'))
              {
     
-                foreach($request->file('property_images') as $image)
+                foreach($request->property_images as $image)
                 {
                     $extension = $image->getClientOriginalExtension();
-                    $name = $properties_id.'.'.$extension;
+                    $name = rand(1111,9999).'.'.$extension;
                     $image->move(public_path().'/uploads/properties/propertyimages/', $name);
                        
                     PropertyImage::create([
@@ -94,6 +101,12 @@ class PropertiesController extends Controller
                 $extension = $request->property_video->getClientOriginalExtension();
                 $pvideo = $properties_id.'.'.$extension;
                 $request->property_video->move(public_path('uploads/properties/videos/'), $pvideo);
+                PropertyAttribute::create([
+                    'property_id' => $properties_id,
+                    'property_video' => $pvideo,
+                    
+                    'property_ubication' => $request->ubication,
+                ]);
             }
             if($request->property_foor_plan){
                 $request->validate([
@@ -102,13 +115,13 @@ class PropertiesController extends Controller
                 $extension = $request->property_foor_plan->getClientOriginalExtension();
                 $p_foor_image = $properties_id.'.'.$extension;
                 $request->property_foor_plan->move(public_path('uploads/properties/floorimages/'), $p_foor_image);
+                PropertyAttribute::create([
+                    'property_id' => $properties_id,
+                    'property_floor_plan' => $p_foor_image,
+                    'property_ubication' => $request->ubication,
+                ]);
             }
-            PropertyAttribute::create([
-                'property_id' => $properties_id,
-                'property_video' => $pvideo,
-                'property_floor_plan' => $p_foor_image,
-                'property_ubication' => $request->ubication,
-            ]);
+            
     
             return back()->with('success','You successfully added a property');
         }catch(Exception $e){
