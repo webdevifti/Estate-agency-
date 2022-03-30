@@ -18,10 +18,13 @@ class AgentController extends Controller
     //
 
     public function index(){
-        return view('agents-grid');
+        $all_agents = Agent::paginate(6);
+        return view('agents-grid',compact('all_agents'));
     }
-    public function show(){
-        return view('agent-single');
+    public function show($id){
+        $find_agent = Agent::find($id);
+        $get_this_agent_properties = Property::where('agent_id', $id)->get();
+        return view('agent-single', compact('find_agent','get_this_agent_properties'));
     }
 
     public function join(){

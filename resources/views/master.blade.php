@@ -172,7 +172,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link {{ (request()->is('about-us')) ? 'active': '' }}" href="{{ url('/') }} " href="{{ route('about') }}">About</a>
+            <a class="nav-link {{ (request()->is('about-us')) ? 'active': '' }}" href="{{ route('about') }}">About</a>
           </li>
 
           <li class="nav-item">

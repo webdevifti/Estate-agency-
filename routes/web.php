@@ -29,7 +29,7 @@ Route::get('/property/show/{slug}', [PropertiesController::class, 'show'])->name
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/blog/show', [BlogController::class, 'show'])->name('blog.single');
 Route::get('/agents', [AgentController::class, 'index'])->name('agents');
-Route::get('/agents/show', [AgentController::class, 'show'])->name('agent.single');
+Route::get('/agents/show/{id}', [AgentController::class, 'show'])->name('agent.single');
 Route::get('/join-as-a-agent', [AgentController::class, 'join'])->name('agent.join');
 Route::post('/joining-agent', [AgentController::class, 'registerAgent'])->name('agent.register');
 Route::get('/agent/verify/email', [AgentController::class, 'verifyAgent']);
