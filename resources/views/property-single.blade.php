@@ -79,7 +79,7 @@
                     <ul class="list">
                       <li class="d-flex justify-content-between">
                         <strong>Property ID:</strong>
-                        <span>1134</span>
+                        <span>{{ $get_signle_property->property_unid }}</span>
                       </li>
                       <li class="d-flex justify-content-between">
                         <strong>Location:</strong>
