@@ -40,7 +40,7 @@ Route::post('/agent/logout', [AgentController::class, 'logout'])->name('agent.lo
 Route::post('/agent/login',[AgentController::class, 'login'])->name('agent.login');
 Route::get('/agent/property/add', [PropertiesController::class, 'create'])->name('add.property');
 Route::post('/agent/property/store', [PropertiesController::class, 'store'])->name('agent.store.property');
-
+Route::get('/property/search', [PropertiesController::class, 'search'])->name('search');
 Auth::routes(['register' => false]);
 
 Route::get('/admin-panel', [AdminController::class, 'index'])->name('admin.panel');

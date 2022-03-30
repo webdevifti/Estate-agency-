@@ -148,4 +148,19 @@ class PropertiesController extends Controller
         }
         
     }
+
+
+    public function search(){
+        $keywords = request()->query('keywords');
+        echo request()->query('property_type');
+        echo request()->query('city');
+        echo request()->query('property_beds');
+        echo request()->query('property_garages');
+        echo request()->query('property_baths');
+        echo request()->query('min_price');
+        if($keywords){
+            $get_all_properties = Property::where('property_name', 'LIKE', "%$keywords%")->paginate(6);
+        }
+        return view('search-property', compact('get_all_properties'));
+    }
 }

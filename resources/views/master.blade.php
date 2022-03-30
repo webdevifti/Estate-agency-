@@ -69,18 +69,18 @@
     </div>
     <span class="close-box-collapse right-boxed bi bi-x"></span>
     <div class="box-collapse-wrap form">
-      <form class="form-a">
+      <form class="form-a" method="GET" action="{{ route('search') }}">
         <div class="row">
           <div class="col-md-12 mb-2">
             <div class="form-group">
               <label class="pb-2" for="Type">Keyword</label>
-              <input type="text" class="form-control form-control-lg form-control-a" placeholder="Keyword">
+              <input type="text" class="form-control form-control-lg form-control-a" placeholder="Keyword" name="keywords">
             </div>
           </div>
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
               <label class="pb-2" for="Type">Type</label>
-              <select class="form-control form-select form-control-a" id="Type">
+              <select name="property_type" class="form-control form-select form-control-a" id="Type">
                 <option>All Type</option>
                 <option>For Rent</option>
                 <option>For Sale</option>
@@ -91,7 +91,7 @@
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
               <label class="pb-2" for="city">City</label>
-              <select class="form-control form-select form-control-a" id="city">
+              <select name="city" class="form-control form-select form-control-a" id="city">
                 <option>All City</option>
                 <option>Alabama</option>
                 <option>Arizona</option>
@@ -103,7 +103,7 @@
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
               <label class="pb-2" for="bedrooms">Bedrooms</label>
-              <select class="form-control form-select form-control-a" id="bedrooms">
+              <select name="property_beds" class="form-control form-select form-control-a" id="bedrooms">
                 <option>Any</option>
                 <option>01</option>
                 <option>02</option>
@@ -114,7 +114,7 @@
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
               <label class="pb-2" for="garages">Garages</label>
-              <select class="form-control form-select form-control-a" id="garages">
+              <select name="property_garages" class="form-control form-select form-control-a" id="garages">
                 <option>Any</option>
                 <option>01</option>
                 <option>02</option>
@@ -126,7 +126,7 @@
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
               <label class="pb-2" for="bathrooms">Bathrooms</label>
-              <select class="form-control form-select form-control-a" id="bathrooms">
+              <select name="property_baths" class="form-control form-select form-control-a" id="bathrooms">
                 <option>Any</option>
                 <option>01</option>
                 <option>02</option>
@@ -137,7 +137,7 @@
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
               <label class="pb-2" for="price">Min Price</label>
-              <select class="form-control form-select form-control-a" id="price">
+              <select name="min_price" class="form-control form-select form-control-a" id="price">
                 <option>Unlimite</option>
                 <option>$50,000</option>
                 <option>$100,000</option>
