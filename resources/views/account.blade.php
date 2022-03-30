@@ -165,14 +165,14 @@
                       <div class="card-overlay-a-content">
                         <div class="card-header-a">
                           <h2 class="card-title-a">
-                            <a href="#">{{ $property->property_name }}</a>
+                            <a href="{{ route('property.single', $property->property_slug) }}">{{ $property->property_name }}</a>
                           </h2>
                         </div>
                         <div class="card-body-a">
                           <div class="price-box d-flex">
                             <span class="price-a">{{ $property->property_status }} | $ {{ $property->property_price }}</span>
                           </div>
-                          <a href="property-single.html" class="link-a">Click here to view
+                          <a href="{{ route('property.single', $property->property_slug) }}" class="link-a">Click here to view
                             <span class="bi bi-chevron-right"></span>
                           </a>
                         </div>

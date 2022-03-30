@@ -1,4 +1,4 @@
- @if($get_slider_property->count() > 0)
+ @if($get_intro_slider_property->count() > 0)
  
  <!-- ======= Intro Section ======= -->
  <div class="intro intro-carousel swiper position-relative">

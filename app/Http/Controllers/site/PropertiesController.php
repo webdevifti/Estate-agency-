@@ -58,7 +58,7 @@ class PropertiesController extends Controller
         try{
             $uniqid = 'property_'.rand(111111,999999);
             $agent_id = session('Loggedagent');
-            $slug = trim(str_replace(' ','-', $request->property_name));
+            $slug = trim(strtolower(str_replace(' ','-', $request->property_name)));
             
             $properties_id = Property::insertGetId([
                 'property_unid' => $uniqid,
@@ -91,7 +91,7 @@ class PropertiesController extends Controller
                 $prp->save();
                 $request->property_thumbnail->move(public_path('uploads/properties/thumbnails/'), $imageName);
             }
-            if($request->hasfile('property_images'))
+            if($request->property_images)
              {
     
                 foreach($request->property_images as $image)
