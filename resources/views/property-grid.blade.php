@@ -42,8 +42,8 @@
                   <option value="desc_to_asc">Old to New</option>
                   <option value="for_rent">For Rent</option>
                   <option value="for_sale">For Sale</option>
-                  <option value="price_asc">Price High to Low</option>
-                  <option value="price_desc">Price Low to High</option>
+                  <option value="price_desc">Price High to Low</option>
+                  <option value="price_asc">Price Low to High</option>
                 </select>
               </form>
             </div>
