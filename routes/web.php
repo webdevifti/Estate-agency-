@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\TestimonialController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\site\AboutController;
 use App\Http\Controllers\site\AgentController;
@@ -44,3 +45,6 @@ Route::get('/property/search', [PropertiesController::class, 'search'])->name('s
 Auth::routes(['register' => false]);
 
 Route::get('/admin-panel', [AdminController::class, 'index'])->name('admin.panel');
+
+
+Route::get('/admin-panel/testimonials', [TestimonialController::class, 'index'])->name('admin.testimonial');
