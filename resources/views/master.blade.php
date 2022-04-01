@@ -80,23 +80,22 @@
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
               <label class="pb-2" for="Type">Type</label>
-              <select name="property_type" class="form-control form-select form-control-a" id="Type">
-                <option>All Type</option>
-                <option>For Rent</option>
-                <option>For Sale</option>
-                <option>Open House</option>
+              <select name="property_status" class="form-control form-select form-control-a" id="Type">
+                <option value="">All Type</option>
+                <option value="rent">For Rent</option>
+                <option value="sale">For Sale</option>
               </select>
             </div>
           </div>
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
               <label class="pb-2" for="city">City</label>
-              <select name="city" class="form-control form-select form-control-a" id="city">
-                <option>All City</option>
-                <option>Alabama</option>
-                <option>Arizona</option>
-                <option>California</option>
-                <option>Colorado</option>
+            <select name="property_location" class="form-control form-select form-control-a" id="city">
+                <option value="">All City</option>
+                <option value="alabama">Alabama</option>
+                <option value="arizona">Arizona</option>
+                <option value="california">California</option>
+                <option value="colorada">Colorado</option>
               </select>
             </div>
           </div>
@@ -104,10 +103,14 @@
             <div class="form-group mt-3">
               <label class="pb-2" for="bedrooms">Bedrooms</label>
               <select name="property_beds" class="form-control form-select form-control-a" id="bedrooms">
-                <option>Any</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
+                <option value="">Any</option>
+                <option value="1">01</option>
+                <option value="2">02</option>
+                <option value="3">03</option>
+                <option value="4">04</option>
+                <option value="5">05</option>
+                <option value="6">06</option>
+                <option value="7">07</option>
               </select>
             </div>
           </div>
@@ -115,11 +118,11 @@
             <div class="form-group mt-3">
               <label class="pb-2" for="garages">Garages</label>
               <select name="property_garages" class="form-control form-select form-control-a" id="garages">
-                <option>Any</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
+                <option value="">Any</option>
+                <option value="1">01</option>
+                <option value="2">02</option>
+                <option value="3">03</option>
+                <option value="4">04</option>
               </select>
             </div>
           </div>
@@ -127,22 +130,24 @@
             <div class="form-group mt-3">
               <label class="pb-2" for="bathrooms">Bathrooms</label>
               <select name="property_baths" class="form-control form-select form-control-a" id="bathrooms">
-                <option>Any</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
+                <option value="">Any</option>
+                <option value="1">01</option>
+                <option value="2">02</option>
+                <option value="3">03</option>
               </select>
             </div>
           </div>
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
               <label class="pb-2" for="price">Min Price</label>
-              <select name="min_price" class="form-control form-select form-control-a" id="price">
-                <option>Unlimite</option>
-                <option>$50,000</option>
-                <option>$100,000</option>
-                <option>$150,000</option>
-                <option>$200,000</option>
+              <select name="price" class="form-control form-select form-control-a" id="price">
+                <option value="">Unlimite</option>
+                <option value="100">$100</option>
+                <option value="200">$200</option>
+                <option value="500">$500</option>
+                <option value="1000">$1000</option>
+                <option value="1500">$1500</option>
+                <option value="2000">$2000</option>
               </select>
             </div>
           </div>

@@ -152,15 +152,34 @@ class PropertiesController extends Controller
 
     public function search(){
         $keywords = request()->query('keywords');
-        echo request()->query('property_type');
-        echo request()->query('city');
-        echo request()->query('property_beds');
-        echo request()->query('property_garages');
-        echo request()->query('property_baths');
-        echo request()->query('min_price');
+        $type = request()->query('property_status');
+        $location = request()->query('property_location');
+        $beds = request()->query('property_beds');
+        $garages = request()->query('property_garages');
+        $baths = request()->query('property_baths');
+        $price = request()->query('price');
+        
         if($keywords){
-            $get_all_properties = Property::where('property_name', 'LIKE', "%$keywords%")->paginate(6);
-        }
+            $get_all_properties = Property::where('property_name','LIKE', "%$keywords%")->paginate(6);
+        }else if($type){
+            $get_all_properties = Property::where('property_status','LIKE', "%$type%")->paginate(6);
+            
+        }else if($location){
+            $get_all_properties = Property::where('property_location','LIKE',"%$location%")->paginate(6);
+            
+        }else if($beds){
+            $get_all_properties = Property::where('property_beds', 'LIKE', "%$beds%")->paginate(6);
+            
+        }else if($baths){
+            $get_all_properties = Property::where('property_baths','LIKE',"%$baths%")->paginate(6);
+            
+        }else if($price){
+        $get_all_properties = Property::where('property_price','<=',$price)->paginate(6);
+        }else if($garages){
+            $get_all_properties = Property::where('property_garages','LIKE',"%$garages%")->paginate(6);
+
+        }                      
+        // dd($get_all_properties);
         return view('search-property', compact('get_all_properties'));
     }
 }
