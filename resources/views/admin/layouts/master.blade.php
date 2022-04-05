@@ -32,12 +32,12 @@
           <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
             <div class="navbar-vertical-content scrollbar">
               <ul class="navbar-nav flex-column" id="navbarVerticalNav">
-                <li class="nav-item"><a class="nav-link active" href="{{ route('admin.panel') }}">
+                <li class="nav-item"><a class="nav-link {{ (request()->is('admin-panel')) ? 'active': '' }}" href="{{ route('admin.panel') }}">
                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span data-feather="cast"></span></span><span class="nav-link-text">Dashbboard</span></div>
                   </a></li>
                 <li class="nav-item">
-                  <p class="navbar-vertical-label">Pages</p><a class="nav-link" href="pages/starter.html" role="button" data-bs-toggle="" aria-expanded="false">
-                    <div class="d-flex align-items-center"><span class="nav-link-icon"><span data-feather="flag"></span></span><span class="nav-link-text">Starter</span></div>
+                  <p class="navbar-vertical-label">Testimonials</p><a class="nav-link {{ (request()->is('admin-panel/testimonials')) ? 'active': '' }}" href="{{ route('admin.testimonial') }}" role="button" data-bs-toggle="" aria-expanded="false">
+                    <div class="d-flex align-items-center"><span class="nav-link-icon"><span data-feather="flag"></span></span><span class="nav-link-text">Testimonials</span></div>
                   </a><a class="nav-link dropdown-indicator" href="#errors" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="errors">
                     <div class="d-flex align-items-center">
                       <div class="dropdown-indicator-icon d-flex flex-center"><span class="fas fa-caret-right fs-0"></span></div><span class="nav-link-icon"><span data-feather="alert-triangle"></span></span><span class="nav-link-text">Errors</span>

@@ -44,7 +44,8 @@ Route::post('/agent/property/store', [PropertiesController::class, 'store'])->na
 Route::get('/property/search', [PropertiesController::class, 'search'])->name('search');
 Auth::routes(['register' => false]);
 
+
 Route::get('/admin-panel', [AdminController::class, 'index'])->name('admin.panel');
-
-
-Route::get('/admin-panel/testimonials', [TestimonialController::class, 'index'])->name('admin.testimonial');
+Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function(){
+    Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonial');
+});
