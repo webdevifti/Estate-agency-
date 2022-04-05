@@ -48,4 +48,5 @@ Auth::routes(['register' => false]);
 Route::get('/admin-panel', [AdminController::class, 'index'])->name('admin.panel');
 Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function(){
     Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonial');
+    Route::post('/testimonials/create', [TestimonialController::class, 'create'])->name('testimonial.add');
 });

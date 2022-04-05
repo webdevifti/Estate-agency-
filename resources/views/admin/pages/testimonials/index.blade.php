@@ -25,34 +25,20 @@
                           <h5 class="modal-title text-white" id="staticBackdropLabel">Add Testimonial</h5><button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1 text-white"></span></button>
                         </div>
                         <div class="modal-body">
-                            <form class="needs-validation" novalidate="" >
-                                <div class="col-md-4 position-relative"><label class="form-label" for="validationTooltip01">First name</label> <input class="form-control" id="validationTooltip01" value="Mark" required="">
+                            <form action="{{ route('admin.testimonial.add') }}" method="POST"  enctype="multipart/form-data">
+                              @csrf
+                                <div class="col-md-12 position-relative">
+                                  <label class="form-label" for="validationTooltip01">Client Name</label> <input class="form-control" name="client_name" placeholder="Enter Your Client Name" id="validationTooltip01" required="">
                                   <div class="valid-tooltip">Looks good!</div>
                                 </div>
-                                <div class="col-md-4 position-relative"><label class="form-label" for="validationTooltip02">Last name</label> <input class="form-control" id="validationTooltip02" value="Otto" required="">
+                                <div class="col-md-12 position-relative"><label class="form-label" for="validationTooltip02">Client Review</label> <textarea class="form-control" name="client_review" id="validationTooltip02" required="" placeholder="Enter Client Reviews"></textarea>
                                   <div class="valid-tooltip">Looks good!</div>
                                 </div>
-                                <div class="col-md-4 position-relative"><label class="form-label" for="validationTooltipUsername">Username</label>
-                                  <div class="input-group"><span class="input-group-text" id="validationTooltipUsernamePrepend">@</span><input class="form-control" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" required="">
-                                    <div class="invalid-tooltip">Please choose a unique and valid username.</div>
-                                  </div>
-                                </div>
-                                <div class="col-md-6 position-relative"><label class="form-label" for="validationTooltip03">City</label> <input class="form-control" id="validationTooltip03" required="">
-                                  <div class="invalid-tooltip">Please provide a valid city.</div>
-                                </div>
-                                <div class="col-md-3 position-relative"><label class="form-label" for="validationTooltip04">State</label> <select class="form-select" id="validationTooltip04" required="">
-                                    <option selected="" disabled="" value="">Choose...</option>
-                                    <option>...</option>
-                                  </select>
-                                  <div class="invalid-tooltip">Please select a valid state.</div>
-                                </div>
-                                <div class="col-md-3 position-relative"><label class="form-label" for="validationTooltip05">Zip</label> <input class="form-control" id="validationTooltip05" required="">
-                                  <div class="invalid-tooltip">Please provide a valid zip.</div>
-                                </div>
-                               
+                                <div class="col-md-12 position-relative"><label class="form-label" for="validationTooltip02">Client Photo</label>
+                                  <input type="file" name="client_photo" class="form-control">
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-primary" type="submit">Submit form</button>
+                            <button class="btn btn-primary" type="submit">Save</button>
                             <button class="btn btn-outline-primary" type="button" data-bs-dismiss="modal">Cancel</button>
                         </div>
                     </form>

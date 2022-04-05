@@ -36,7 +36,7 @@
                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span data-feather="cast"></span></span><span class="nav-link-text">Dashbboard</span></div>
                   </a></li>
                 <li class="nav-item">
-                  <p class="navbar-vertical-label">Testimonials</p><a class="nav-link {{ (request()->is('admin-panel/testimonials')) ? 'active': '' }}" href="{{ route('admin.testimonial') }}" role="button" data-bs-toggle="" aria-expanded="false">
+                <a class="nav-link {{ (request()->is('admin-panel/testimonials')) ? 'active': '' }}" href="{{ route('admin.testimonial') }}" role="button" data-bs-toggle="" aria-expanded="false">
                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span data-feather="flag"></span></span><span class="nav-link-text">Testimonials</span></div>
                   </a><a class="nav-link dropdown-indicator" href="#errors" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="errors">
                     <div class="d-flex align-items-center">
