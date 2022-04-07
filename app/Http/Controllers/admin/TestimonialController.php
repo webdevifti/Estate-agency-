@@ -47,4 +47,29 @@ class TestimonialController extends Controller
             return back()->with('error','Something wrong');
         }
     }
+
+    public function statusChange($id){
+        $test = Testimonial::find($id);
+        if($test->status == 1){
+            $test->status = 0;
+            $test->save();
+            return back();
+        }else{
+            $test->status = 1;
+            $test->save();
+            return back();
+        }
+    }
+
+    public function delete($id){
+        $test = Testimonial::find($id);
+       
+        if(file_exists(public_path('uploads/client_photos/'.$test->client_photo))){
+            unlink(public_path('uploads/client_photos/'.$test->client_photo));
+            }else{
+                dd('File does not exists.');
+            }
+        $test->delete();
+        return back();
+    }
 }
