@@ -13,7 +13,8 @@ class TestimonialController extends Controller
     //
 
     public function index(){
-        return view('admin.pages.testimonials.index');
+        $get_testimonials = Testimonial::all();
+        return view('admin.pages.testimonials.index', compact('get_testimonials'));
     }
 
     public function create(Request $request){
@@ -28,15 +29,22 @@ class TestimonialController extends Controller
             'status' => 1,
             'created_at' => Carbon::now()
         ]);
-
-        if($request->client_photo){
-            $imageName = $testimonial.'_'.'.'.$request->file('client_photo')->getClientOriginalExtension();
-            $path = public_path('uploads/client_photos/');
-            $request->client_photo->move($path, $imageName);
-            $test = Testimonial::find($testimonial);
-            $test->client_photo = $imageName;
-            $test->save();
+        if($testimonial){
+            if($request->client_photo){
+                $imageName = $testimonial.'_'.'.'.$request->file('client_photo')->getClientOriginalExtension();
+                $path = public_path('uploads/client_photos/');
+                $request->client_photo->move($path, $imageName);
+                $test = Testimonial::find($testimonial);
+                $test->client_photo = $imageName;
+                $img_upload = $test->save();
+                if($img_upload){
+                    return back()->with('success','Testimonial Saved');
+                }else{
+                    return back()->with('error','Something wrong');
+                }
+            }
+        }else{
+            return back()->with('error','Something wrong');
         }
-       return back();
     }
 }

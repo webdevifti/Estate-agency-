@@ -53,57 +53,62 @@
           <table class="table fs--2 mb-0 overflow-hidden">
             <thead>
               <tr>
-                <th class="white-space-nowrap fs--1 border-top ps-0 align-middle">
-                  <div class="form-check mb-0 fs-0"><input class="form-check-input" type="checkbox"></div>
-                </th>
+              
                 <th class="sort border-top white-space-nowrap align-middle" scope="col"></th>
-                <th class="sort border-top white-space-nowrap align-middle" scope="col" style="min-width:360px;" data-sort="product">PRODUCT</th>
-                <th class="sort border-top align-middle" scope="col" data-sort="customer" style="min-width:200px;">CUSTOMER</th>
-                <th class="sort border-top align-middle" scope="col" data-sort="rating" style="min-width:110px;">RATING</th>
-                <th class="sort border-top align-middle" scope="col" style="max-width:350px;" data-sort="review">REVIEW</th>
+                <th class="sort border-top white-space-nowrap align-middle" scope="col" style="min-width:360px;" data-sort="product">Client Name</th>
+                <th class="sort border-top align-middle" scope="col" data-sort="customer" style="min-width:200px;">Client Photo</th>
+                <th class="sort border-top align-middle" scope="col" style="max-width:350px;" data-sort="review">Client Review</th>
                 <th class="sort border-top text-start ps-5 align-middle" scope="col" data-sort="status">STATUS</th>
                 <th class="sort border-top text-end align-middle" scope="col" data-sort="time">TIME</th>
                 <th class="sort border-top text-end pe-0 align-middle" scope="col">ACTION</th>
               </tr>
             </thead>
             <tbody class="list" id="table-latest-review-body">
+              @foreach ($get_testimonials as $item)
               <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                <td class="fs--1 align-middle ps-0" style="width: 28px;">
-                  <div class="form-check mb-0 fs-0"><input class="form-check-input" type="checkbox"></div>
-                </td>
+               
                 <td class="align-middle product white-space-nowrap py-0"><img src="assets/img//products/1.png" alt="" width="53"></td>
                 <td class="align-middle product white-space-nowrap" style="min-width:360px;">
-                  <h6 class="fw-semi-bold mb-0">Fitbit Sense Advanced Smartwatch with Tools</h6>
+                  <h6 class="fw-semi-bold mb-0">{{ $item->client_name }}</h6>
                 </td>
                 <td class="align-middle customer white-space-nowrap" style="min-width:200px;">
                   <div class="d-flex align-items-center">
                     <div class="avatar avatar-l">
-                      <div class="avatar-name rounded-circle"><span>R</span></div>
+                      <div class="avatar-name rounded-circle"><span><img src="{{ asset('uploads/client_photos/'.$item->client_photo) }}" alt=""></span></div>
                     </div>
-                    <h6 class="mb-0 ms-3 text-900">Richard Dawkins</h6>
+                   
                   </div>
                 </td>
-                <td class="align-middle rating white-space-nowrap" style="min-width:110px;"><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span></td>
+              
                 <td class="align-middle review" style="min-width:350px;width:500px;">
-                  <p class="fs--1 fw-semi-bold text-1000 mb-0">Very helpful to get going with rapid prototype development. Great support via email when I asked question.</p>
+                  <p class="fs--1 fw-semi-bold text-1000 mb-0">{{ $item->client_review }}</p>
                 </td>
-                <td class="align-middle text-start ps-5 status"><span class="badge fs--1 badge-light-success">Approved<span class="ms-2 fas fa-check"></span></span></td>
+                <td class="align-middle text-start ps-5 status">
+                  @if($item->status == 1)
+                      <span class="badge fs--1 badge-light-success">
+                        Approved
+                      <span class="ms-2 fas fa-check"></span></span>
+                      @else
+                      <span class="badge fs--1 badge-light-danger">
+                        Disabled
+                      <span class="ms-2 fas fa-uncheck"></span></span>
+                      @endif
+                </td>
                 <td class="align-middle text-end time white-space-nowrap">
                   <div class="hover-hide">
-                    <h6 class="text-1000 mb-0">Just now</h6>
+                    <h6 class="text-1000 mb-0">{{ $item->created_at->diffForHumans() }}</h6>
                   </div>
                 </td>
                 <td class="align-middle white-space-nowrap text-end pe-0">
-                  <div class="position-relative">
-                    <div class="hover-actions"><button class="btn btn-sm btn-phoenix-secondary me-1 fs--2"><span class="fas fa-check"></span></button><button class="btn btn-sm btn-phoenix-secondary fs--2"><span class="fas fa-trash"></span></button></div>
-                  </div>
+                 
                   <div class="font-sans-serif btn-reveal-trigger"><button class="btn btn-link fs--2 text-600 btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
-                    <div class="dropdown-menu dropdown-menu-end border py-2"><a class="dropdown-item" href="#!">View</a><a class="dropdown-item" href="#!">Export</a>
-                      <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="#!">Remove</a>
+                    <div class="dropdown-menu dropdown-menu-end border py-2">
+                      <a class="dropdown-item text-danger" href="#!">Remove</a>
                     </div>
                   </div>
                 </td>
               </tr>
+              @endforeach
             </tbody>
           </table>
         </div>
