@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\TeamMemberController;
 use App\Http\Controllers\admin\TestimonialController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\site\AboutController;
@@ -47,8 +48,13 @@ Auth::routes(['register' => false]);
 
 Route::get('/admin-panel', [AdminController::class, 'index'])->name('admin.panel');
 Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function(){
+    // Testimonial Routes
     Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonial');
     Route::post('/testimonials/create', [TestimonialController::class, 'create'])->name('testimonial.add');
     Route::get('/testimonials/status/{id}', [TestimonialController::class, 'statusChange'])->name('testimonial.status');
     Route::get('/testimonials/delete/{id}', [TestimonialController::class, 'delete'])->name('testimonial.delete');
+
+    // Team Member Routes
+    Route::resource('/team-member', TeamMemberController::class);
+    Route::get('/team-member/status/{id}', [TeamMemberController::class, 'changeStatus'])->name('team-member.status');
 });

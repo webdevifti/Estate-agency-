@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Phoenix</title>
+    <title>@yield('title')</title>
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('admin/assets/img/favicons/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('admin/assets/img/favicons/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('admin/assets/img/favicons/favicon-16x16.png') }}">
@@ -38,7 +38,14 @@
                 <li class="nav-item">
                 <a class="nav-link {{ (request()->is('admin-panel/testimonials')) ? 'active': '' }}" href="{{ route('admin.testimonial') }}" role="button" data-bs-toggle="" aria-expanded="false">
                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span data-feather="flag"></span></span><span class="nav-link-text">Testimonials</span></div>
-                  </a><a class="nav-link dropdown-indicator" href="#errors" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="errors">
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link {{ (request()->is('admin-panel/team-member')) ? 'active': '' }}" href="{{ route('admin.team-member.index') }}" role="button" data-bs-toggle="" aria-expanded="false">
+                      <div class="d-flex align-items-center"><span class="nav-link-icon"><span data-feather="user"></span></span><span class="nav-link-text">Team Member</span></div>
+                    </a>
+                  </li>
+                  {{-- <a class="nav-link dropdown-indicator" href="#errors" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="errors">
                     <div class="d-flex align-items-center">
                       <div class="dropdown-indicator-icon d-flex flex-center"><span class="fas fa-caret-right fs-0"></span></div><span class="nav-link-icon"><span data-feather="alert-triangle"></span></span><span class="nav-link-text">Errors</span>
                     </div>
@@ -50,34 +57,8 @@
                     <li class="nav-item"><a class="nav-link" href="pages/errors/500.html" data-bs-toggle="" aria-expanded="false">
                         <div class="d-flex align-items-center"><span class="nav-link-text">500</span></div>
                       </a></li>
-                  </ul><a class="nav-link dropdown-indicator" href="#authentication" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="authentication">
-                    <div class="d-flex align-items-center">
-                      <div class="dropdown-indicator-icon d-flex flex-center"><span class="fas fa-caret-right fs-0"></span></div><span class="nav-link-icon"><span data-feather="lock"></span></span><span class="nav-link-text">Authentication</span>
-                    </div>
-                  </a>
-                  <ul class="nav collapse parent" id="authentication">
-                    <li class="nav-item"><a class="nav-link" href="pages/authentication/simple/sign-in.html" data-bs-toggle="" aria-expanded="false">
-                        <div class="d-flex align-items-center"><span class="nav-link-text">Sign in</span></div>
-                      </a></li>
-                    <li class="nav-item"><a class="nav-link" href="pages/authentication/simple/sign-up.html" data-bs-toggle="" aria-expanded="false">
-                        <div class="d-flex align-items-center"><span class="nav-link-text">Sign up</span></div>
-                      </a></li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="pages/authentication/simple/sign-out.html" data-bs-toggle="" aria-expanded="false">
-                        <div class="d-flex align-items-center"><span class="nav-link-text">Sign out</span></div>
-                      </a>
-                      
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="pages/authentication/simple/forgot-password.html" data-bs-toggle="" aria-expanded="false">
-                        <div class="d-flex align-items-center"><span class="nav-link-text">Forgot password</span></div>
-                      </a></li>
-                    <li class="nav-item"><a class="nav-link" href="pages/authentication/simple/reset-password.html" data-bs-toggle="" aria-expanded="false">
-                        <div class="d-flex align-items-center"><span class="nav-link-text">Reset password</span></div>
-                      </a></li>
-                    <li class="nav-item"><a class="nav-link" href="pages/authentication/simple/lock-screen.html" data-bs-toggle="" aria-expanded="false">
-                        <div class="d-flex align-items-center"><span class="nav-link-text">Lock screen</span></div>
-                      </a></li>
                   </ul>
+                   --}}
                 </li>
               </ul>
             </div>

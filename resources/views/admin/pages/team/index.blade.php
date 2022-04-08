@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title','Testimonial Management')
+@section('title', 'Team Member Management')
 @section('content')
 <div class="content pt-5">
 <div class="mx-n6 bg-white px-6 pt-7 border-y border-300">
@@ -7,8 +7,8 @@
       <div data-list='{"valueNames":["product","customer","rating","review","time"],"page":6}'>
         <div class="row align-items-end justify-content-between pb-5 g-3">
           <div class="col-auto">
-            <h3>Testimonials</h3>
-            <p class="text-700 lh-sm mb-0">People what they are think about your service</p>
+            <h3>My Team Members</h3>
+            <p class="text-700 lh-sm mb-0">They are creative, Passionated, Dedicated</p>
           </div>
           <div class="col-12 col-md-auto">
             <div class="row g-2">
@@ -18,25 +18,42 @@
                 </div>
               </div>
               <div class="col-auto">
-                  <button class="btn btn-sm btn-phoenix-secondary bg-white hover-bg-100" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add New</button>
+                  <button class="btn btn-sm btn-phoenix-secondary bg-white hover-bg-100" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add New Member</button>
                   <div class="modal fade" id="staticBackdrop" tabindex="-1" data-bs-backdrop="static" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header bg-primary">
-                          <h5 class="modal-title text-white" id="staticBackdropLabel">Add Testimonial</h5><button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1 text-white"></span></button>
+                          <h5 class="modal-title text-white" id="staticBackdropLabel">Add New Member</h5><button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1 text-white"></span></button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('admin.testimonial.add') }}" method="POST"  enctype="multipart/form-data">
+                            <form action="{{ route('admin.team-member.store') }}" method="POST"  enctype="multipart/form-data">
                               @csrf
                                 <div class="col-md-12 position-relative">
-                                  <label class="form-label" for="validationTooltip01">Client Name</label> <input class="form-control" name="client_name" placeholder="Enter Your Client Name" id="validationTooltip01" required="">
-                                  <div class="valid-tooltip">Looks good!</div>
+                                  <label class="form-label" for="validationTooltip01"> Name</label> <input class="form-control" name="name" placeholder="Enter Your  Name" id="validationTooltip01" required="">
                                 </div>
-                                <div class="col-md-12 position-relative"><label class="form-label" for="validationTooltip02">Client Review</label> <textarea class="form-control" name="client_review" id="validationTooltip02" required="" placeholder="Enter Client Reviews"></textarea>
-                                  <div class="valid-tooltip">Looks good!</div>
+                                <div class="col-md-12 position-relative"><label class="form-label" for="validationTooltip02">Email</label>
+                                    <input type="email" name="email" placeholder="Email" class="form-control">
                                 </div>
-                                <div class="col-md-12 position-relative"><label class="form-label" for="validationTooltip02">Client Photo</label>
-                                  <input type="file" name="client_photo" class="form-control">
+                                <div class="col-md-12 position-relative"><label class="form-label" for="validationTooltip02">Phone</label>
+                                    <input type="text" name="phone" placeholder="Phone" class="form-control">
+                                </div>
+                                <div class="col-md-12 position-relative"><label class="form-label" for="validationTooltip02">Facebook</label>
+                                    <input type="text" name="facebook" placeholder="Facebook Profile Link" class="form-control">
+                                </div>
+                                <div class="col-md-12 position-relative"><label class="form-label" for="validationTooltip02">Instagram</label>
+                                    <input type="text" name="instagram" placeholder="Instagram Profile Link" class="form-control">
+                                </div>
+                                <div class="col-md-12 position-relative"><label class="form-label" for="validationTooltip02">Twitter</label>
+                                    <input type="text" name="twitter" placeholder="Twitter Profile Link" class="form-control">
+                                </div>
+                                <div class="col-md-12 position-relative"><label class="form-label" for="validationTooltip02">Linkedin</label>
+                                    <input type="text" name="linkedin" placeholder="Linkedin Profile Link" class="form-control">
+                                </div>
+                                <div class="col-md-12 position-relative"><label class="form-label" for="validationTooltip02">Bio</label>
+                                    <textarea  name="bio" placeholder="Linkedin Profile Link" class="form-control"></textarea>
+                                </div>
+                                <div class="col-md-12 position-relative"><label class="form-label" for="validationTooltip02"> Photo</label>
+                                  <input type="file" name="photo" class="form-control">
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-primary" type="submit">Save</button>
@@ -56,33 +73,38 @@
               <tr>
               
                 <th class="sort border-top white-space-nowrap align-middle" scope="col"></th>
-                <th class="sort border-top white-space-nowrap align-middle" scope="col" style="min-width:360px;" data-sort="product">Client Name</th>
-                <th class="sort border-top align-middle" scope="col" data-sort="customer" style="min-width:200px;">Client Photo</th>
-                <th class="sort border-top align-middle" scope="col" style="max-width:350px;" data-sort="review">Client Review</th>
+                <th class="sort border-top white-space-nowrap align-middle" scope="col" style="min-width:360px;" data-sort="product"> Name</th>
+                <th class="sort border-top align-middle" scope="col" data-sort="customer" style="min-width:200px;"> Photo</th>
+                <th class="sort border-top align-middle" scope="col" style="max-width:350px;" data-sort="review">Email</th>
+                <th class="sort border-top align-middle" scope="col" style="max-width:350px;" data-sort="review">Phone</th>
                 <th class="sort border-top text-start ps-5 align-middle" scope="col" data-sort="status">STATUS</th>
                 <th class="sort border-top text-end align-middle" scope="col" data-sort="time">TIME</th>
                 <th class="sort border-top text-end pe-0 align-middle" scope="col">ACTION</th>
               </tr>
             </thead>
             <tbody class="list" id="table-latest-review-body">
-              @foreach ($get_testimonials as $item)
+              @foreach ($get_team_member as $item)
               <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                
-                <td class="align-middle product white-space-nowrap py-0"><img src="assets/img//products/1.png" alt="" width="53"></td>
+                <td class="align-middle product white-space-nowrap py-0">
+                    <img src="assets/img//products/1.png" alt="" width="53"></td>
                 <td class="align-middle product white-space-nowrap" style="min-width:360px;">
-                  <h6 class="fw-semi-bold mb-0">{{ $item->client_name }}</h6>
+                  <h6 class="fw-semi-bold mb-0">{{ $item->name }}</h6>
                 </td>
                 <td class="align-middle customer white-space-nowrap" style="min-width:200px;">
                   <div class="d-flex align-items-center">
                     <div class="avatar avatar-l">
-                      <div class="avatar-name rounded-circle"><span><img src="{{ asset('uploads/client_photos/'.$item->client_photo) }}" alt=""></span></div>
+                      <div class="avatar-name rounded-circle"><span><img src="{{ asset('uploads/teams/'.$item->photo) }}" alt=""></span></div>
                     </div>
                    
                   </div>
                 </td>
               
                 <td class="align-middle review" style="min-width:350px;width:500px;">
-                  <p class="fs--1 fw-semi-bold text-1000 mb-0">{{ $item->client_review }}</p>
+                  <p class="fs--1 fw-semi-bold text-1000 mb-0">{{ $item->email }}</p>
+                </td>
+                <td class="align-middle review" style="min-width:350px;width:500px;">
+                  <p class="fs--1 fw-semi-bold text-1000 mb-0">{{ $item->phone }}</p>
                 </td>
                 <td class="align-middle text-start ps-5 status">
                   @if($item->status == 1)
@@ -104,8 +126,8 @@
                  
                   <div class="font-sans-serif btn-reveal-trigger"><button class="btn btn-link fs--2 text-600 btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                     <div class="dropdown-menu dropdown-menu-end border py-2">
-                      <a class="dropdown-item" href="{{ route('admin.testimonial.status', $item->id) }}">Change status</a>
-                      <a class="dropdown-item text-danger" href="{{ route('admin.testimonial.delete', $item->id) }}">Remove</a>
+                      <a class="dropdown-item" href="{{ route('admin.team-member.status', $item->id) }}">Change status</a>
+                      <a class="dropdown-item text-danger" href="{{ route('admin.team-member.destroy', $item->id) }}">Remove</a>
                     </div>
                   </div>
                 </td>
