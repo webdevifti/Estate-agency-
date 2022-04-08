@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\TeamMemberController;
 use App\Http\Controllers\admin\TestimonialController;
+use App\Http\Controllers\admin\BlogPostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\site\AboutController;
 use App\Http\Controllers\site\AgentController;
@@ -57,4 +58,7 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function(){
     // Team Member Routes
     Route::resource('/team-member', TeamMemberController::class);
     Route::get('/team-member/status/{id}', [TeamMemberController::class, 'statusChange'])->name('team-member.status');
+
+    //Blog Routes
+    Route::resource('/blog', BlogPostController::class);
 });
