@@ -18,6 +18,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet">
     <link href="{{ asset('admin/assets/css/phoenix.min.css') }}" rel="stylesheet" id="style-default">
     <link href="{{ asset('admin/assets/css/user.min.css') }}" rel="stylesheet" id="user-style-default">
+   
+    <link rel="stylesheet" type="text/css" 
+       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    
     <style>
       body {
         opacity: 0;
@@ -135,6 +139,10 @@
 </main>
 <script src="{{ asset('admin/assets/js/phoenix.js') }}"></script>
 <script src="{{ asset('admin/assets/js/ecommerce-dashboard.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+@yield('footer_script')
 </body>
 
 </html>

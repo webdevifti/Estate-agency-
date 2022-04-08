@@ -53,11 +53,11 @@ class TestimonialController extends Controller
         if($test->status == 1){
             $test->status = 0;
             $test->save();
-            return back();
+            return back()->with('success','Status Change successfully');
         }else{
             $test->status = 1;
             $test->save();
-            return back();
+            return back()->with('success','Status Change successfully');
         }
     }
 
@@ -67,9 +67,9 @@ class TestimonialController extends Controller
         if(file_exists(public_path('uploads/client_photos/'.$test->client_photo))){
             unlink(public_path('uploads/client_photos/'.$test->client_photo));
             }else{
-                dd('File does not exists.');
+                return back()->with('error','File does not exists.');
             }
         $test->delete();
-        return back();
+        return back()->with('success','Testimonial Deleted');
     }
 }

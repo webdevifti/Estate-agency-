@@ -126,3 +126,27 @@
   </div>
 
 @endsection
+
+@section('footer_script')
+@if(Session::has('success'))
+<script>
+  toastr.options =
+  {
+  	"closeButton" : true,
+  	"progressBar" : true
+  }
+  		toastr.success("{{ session('success') }}");
+  </script>
+  @endif
+
+  @if(Session::has('error'))
+  <script>
+  toastr.options =
+  {
+  	"closeButton" : true,
+  	"progressBar" : true
+  }
+  		toastr.error("{{ session('error') }}");
+    </script>
+  @endif
+@endsection

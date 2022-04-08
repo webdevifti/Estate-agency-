@@ -50,7 +50,7 @@
                                     <input type="text" name="linkedin" placeholder="Linkedin Profile Link" class="form-control">
                                 </div>
                                 <div class="col-md-12 position-relative"><label class="form-label" for="validationTooltip02">Bio</label>
-                                    <textarea  name="bio" placeholder="Linkedin Profile Link" class="form-control"></textarea>
+                                    <textarea  name="bio" placeholder="Bio" class="form-control"></textarea>
                                 </div>
                                 <div class="col-md-12 position-relative"><label class="form-label" for="validationTooltip02"> Photo</label>
                                   <input type="file" name="photo" class="form-control">
@@ -127,7 +127,17 @@
                   <div class="font-sans-serif btn-reveal-trigger"><button class="btn btn-link fs--2 text-600 btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                     <div class="dropdown-menu dropdown-menu-end border py-2">
                       <a class="dropdown-item" href="{{ route('admin.team-member.status', $item->id) }}">Change status</a>
-                      <a class="dropdown-item text-danger" href="{{ route('admin.team-member.destroy', $item->id) }}">Remove</a>
+                      {{-- <a class="dropdown-item text-danger" href="{{ route('admin.team-member.destroy', $item->id) }}">Remove</a> --}}
+                        <a class="dropdown-item text-danger" href="{{ route('admin.team-member.destroy',$item->id) }}"
+                            onclick="event.preventDefault();
+                                        document.getElementById('delete-form').submit();">
+                            {{ __('Remove') }}
+                        </a>
+
+                        <form id="delete-form" action="{{ route('admin.team-member.destroy', $item->id) }}" method="POST" class="d-none">
+                            @csrf
+                            @method('DELETE')
+                        </form>
                     </div>
                   </div>
                 </td>
@@ -147,4 +157,27 @@
     </div>
   </div>
 
+@endsection
+@section('footer_script')
+@if(Session::has('success'))
+<script>
+  toastr.options =
+  {
+  	"closeButton" : true,
+  	"progressBar" : true
+  }
+  		toastr.success("{{ session('success') }}");
+  </script>
+  @endif
+
+  @if(Session::has('error'))
+  <script>
+  toastr.options =
+  {
+  	"closeButton" : true,
+  	"progressBar" : true
+  }
+  		toastr.error("{{ session('error') }}");
+    </script>
+  @endif
 @endsection

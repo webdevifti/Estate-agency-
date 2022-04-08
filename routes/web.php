@@ -56,5 +56,5 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function(){
 
     // Team Member Routes
     Route::resource('/team-member', TeamMemberController::class);
-    Route::get('/team-member/status/{id}', [TeamMemberController::class, 'changeStatus'])->name('team-member.status');
+    Route::get('/team-member/status/{id}', [TeamMemberController::class, 'statusChange'])->name('team-member.status');
 });

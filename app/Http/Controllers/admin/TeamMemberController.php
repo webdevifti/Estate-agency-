@@ -39,6 +39,42 @@ class TeamMemberController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required'
+        ]);
+        $create = new TeamMember;
+        $create->name = $request->name;
+        $create->email = $request->email;
+        $create->phone = $request->phone;
+        $create->facebook = $request->facebook;
+        $create->instagram = $request->instagram;
+        $create->twitter = $request->twitter;
+        $create->linkedin = $request->linkedin;
+        $create->bio = $request->bio;
+        $saved = $create->save();
+        $last_id = $create->id;
+
+        if($saved){
+
+        }else{
+            return back()->with('error','Something wrong');
+        }
+        if($request->photo){
+            $imageName = $last_id.'_'.'.'.$request->file('photo')->getClientOriginalExtension();
+            $path = public_path('uploads/teams/');
+            $request->photo->move($path, $imageName);
+            $team = TeamMember::find($last_id);
+            $team->photo = $imageName;
+            $img_upload = $team->save();
+            if($img_upload){
+                return back()->with('success','Team Member Added Successfully');
+            }else{
+                return back()->with('error','Something wrong');
+            }
+        }
+
     }
 
     /**
@@ -84,5 +120,27 @@ class TeamMemberController extends Controller
     public function destroy($id)
     {
         //
+        $team = TeamMember::find($id);
+       
+        if(file_exists(public_path('uploads/teams/'.$team->photo))){
+            unlink(public_path('uploads/teams/'.$team->photo));
+            }else{
+                return back()->with('error','File does not exists.');
+            }
+        $team->delete();
+        return back()->with('success','Team Member Deleted');
+    }
+
+    public function statusChange($id){
+        $team = TeamMember::find($id);
+        if($team->status == 1){
+            $team->status = 0;
+            $team->save();
+            return back()->with('success','Status Change successfully');
+        }else{
+            $team->status = 1;
+            $team->save();
+            return back()->with('success','Status Change successfully');
+        }
     }
 }
