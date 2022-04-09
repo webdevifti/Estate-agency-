@@ -47,6 +47,8 @@ Route::post('/agent/property/store', [PropertiesController::class, 'store'])->na
 Route::get('/property/search', [PropertiesController::class, 'search'])->name('search');
 Auth::routes(['register' => false]);
 
+Route::post('/contact-with-us/message', [ContactController::class, 'contact']);
+
 
 Route::get('/admin-panel', [AdminController::class, 'index'])->name('admin.panel');
 Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function(){
@@ -64,5 +66,8 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function(){
     Route::resource('/blog', BlogPostController::class);
 
     Route::get('/contact-page', [ContactPageController::class, 'index'])->name('contact.page');
-    Route::post('/contact-page/page-info-top/create', [ContactPageController::class, 'pageinfoTop'])->name('contact.basic');
+    Route::put('/contact-page/page-info-top/update/{id}', [ContactPageController::class, 'pageinfoTop'])->name('contact.basic');
+    Route::put('/contact-page/contact-map/update/{id}', [ContactPageController::class, 'mapUpdate'])->name('contact.map');
+    Route::put('/contact-page/contact-info/update/{id}', [ContactPageController::class, 'ContactInfoUpdate'])->name('contact.info.update');
+    Route::put('/contact-page/contact-social/update/{id}', [ContactPageController::class, 'ContactSocialUpdate'])->name('contact.social');
 });
