@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\TeamMemberController;
 use App\Http\Controllers\admin\TestimonialController;
 use App\Http\Controllers\admin\BlogPostController;
+use App\Http\Controllers\admin\ContactPageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\site\AboutController;
 use App\Http\Controllers\site\AgentController;
@@ -61,4 +62,7 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function(){
 
     //Blog Routes
     Route::resource('/blog', BlogPostController::class);
+
+    Route::get('/contact-page', [ContactPageController::class, 'index'])->name('contact.page');
+    Route::post('/contact-page/page-info-top/create', [ContactPageController::class, 'pageinfoTop'])->name('contact.basic');
 });

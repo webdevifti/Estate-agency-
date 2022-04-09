@@ -50,10 +50,15 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('admin-panel/blog')) ? 'active': '' }}" href="{{ route('admin.blog.index') }}" role="button" data-bs-toggle="" aria-expanded="false">
-                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span data-feather="book"></span></span><span class="nav-link-text">Blog</span></div>
+                    <a class="nav-link {{ (request()->is('admin-panel/contact-page')) ? 'active': '' }}" href="{{ route('admin.contact.page') }}" role="button" data-bs-toggle="" aria-expanded="false">
+                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span data-feather="book"></span></span><span class="nav-link-text">Contact Page Management</span></div>
                       </a>
                     </li>
+                    <li class="nav-item">
+                      <a class="nav-link {{ (request()->is('admin-panel/blog')) ? 'active': '' }}" href="{{ route('admin.blog.index') }}" role="button" data-bs-toggle="" aria-expanded="false">
+                          <div class="d-flex align-items-center"><span class="nav-link-icon"><span data-feather="book"></span></span><span class="nav-link-text">Blog</span></div>
+                        </a>
+                      </li>
                   {{-- <a class="nav-link dropdown-indicator" href="#errors" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="errors">
                     <div class="d-flex align-items-center">
                       <div class="dropdown-indicator-icon d-flex flex-center"><span class="fas fa-caret-right fs-0"></span></div><span class="nav-link-icon"><span data-feather="alert-triangle"></span></span><span class="nav-link-text">Errors</span>
