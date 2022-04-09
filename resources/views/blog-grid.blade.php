@@ -1,4 +1,5 @@
 @extends('master')
+@section('page_title','Our News Post')
 @section('MainContent')
   <main id="main">
 

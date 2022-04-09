@@ -1,4 +1,5 @@
 @extends('master')
+@section('page_title','Contact with us')
 @section('MainContent')
   <main id="main">
 

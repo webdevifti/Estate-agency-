@@ -1,4 +1,5 @@
 @extends('master')
+@section('page_title', 'About')
 @section('MainContent')
   <main id="main">
 
@@ -9,6 +10,7 @@
           <div class="col-md-12 col-lg-8">
             <div class="title-single-box">
               <h1 class="title-single">We Do Great Design For Creative Folks</h1>
+             
             </div>
           </div>
           <div class="col-md-12 col-lg-4">
@@ -114,7 +116,7 @@
                   </p>
                   <div class="info-agents color-a">
                     <p>
-                      <strong>Phone: </strong> {{ $t->phonr }}
+                      <strong>Phone: </strong> {{ $t->phone }}
                     </p>
                     <p>
                       <strong>Email: </strong> {{ $t->email }}
