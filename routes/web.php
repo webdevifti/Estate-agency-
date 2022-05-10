@@ -32,7 +32,7 @@ Route::get('/contact-us', [ContactController::class, 'index'])->name('contact');
 Route::get('/properties', [PropertiesController::class, 'index'])->name('properties');
 Route::get('/property/show/{slug}', [PropertiesController::class, 'show'])->name('property.single');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
-Route::get('/blog/show', [BlogController::class, 'show'])->name('blog.single');
+Route::get('/blog/show/{slug}', [BlogController::class, 'show'])->name('blog.single');
 Route::get('/agents', [AgentController::class, 'index'])->name('agents');
 Route::get('/agents/show/{id}', [AgentController::class, 'show'])->name('agent.single');
 Route::get('/join-as-a-agent', [AgentController::class, 'join'])->name('agent.join');
