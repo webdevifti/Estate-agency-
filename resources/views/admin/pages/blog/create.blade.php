@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-md-12 position-relative">
                     <label class="form-label" for="c"> Category</label> 
-                    <select name="category_id" id="c" class="form-control">
+                    <select name="category_id" id="c" class="form-control" required>
                         <option value="">Select Category</option>
                         @foreach ($getActiveCategory as $item)
                             <option value="{{ $item->id }}">{{ $item->category }}</option>
@@ -27,11 +27,11 @@
                 </div>
                 <div class="col-md-12 position-relative">
                     <label class="form-label" for="inp_editor1"> Article</label> 
-                    <textarea name="article" id="inp_editor1" class="form-control" cols="30" rows="10"></textarea>
+                    <textarea name="article" id="inp_editor1" required class="form-control" cols="30" rows="10"></textarea>
                 </div>
                 <div class="col-md-12 position-relative">
                     <label class="form-label"> Thumbnails</label> 
-                    <input type="file" class="form-control" name="thumbnail">
+                    <input type="file" class="form-control" required name="thumbnail">
                 </div>
                 <button type="submit" class="btn btn-success mt-5">Post</button>
             </form>
