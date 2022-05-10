@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\TeamMemberController;
 use App\Http\Controllers\admin\TestimonialController;
 use App\Http\Controllers\admin\BlogPostController;
 use App\Http\Controllers\admin\ContactPageController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\site\AboutController;
 use App\Http\Controllers\site\AgentController;
@@ -64,6 +65,8 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function(){
 
     //Blog Routes
     Route::resource('/blog', BlogPostController::class);
+
+    Route::post('/category/create', [CategoryController::class, 'store'])->name('category.store');
 
     Route::get('/contact-page', [ContactPageController::class, 'index'])->name('contact.page');
     Route::put('/contact-page/page-info-top/update/{id}', [ContactPageController::class, 'pageinfoTop'])->name('contact.basic');
