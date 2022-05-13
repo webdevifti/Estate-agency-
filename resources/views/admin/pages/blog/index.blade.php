@@ -35,7 +35,7 @@
                     <th class="sort border-top align-middle" scope="col" style="max-width:350px;" data-sort="review">Category</th>
                     <th class="sort border-top align-middle" scope="col" style="max-width:350px;" data-sort="review">Author</th>
                     <th class="sort border-top text-start ps-5 align-middle" scope="col" data-sort="status">Status</th>
-                    <th class="sort border-top text-end align-middle" scope="col" data-sort="time">Time</th>
+                    <th class="sort border-top text-end align-middle" scope="col" data-sort="time">Posted On</th>
                     <th class="sort border-top text-end pe-0 align-middle" scope="col">Action</th>
                   </tr>
                 </thead>
@@ -82,6 +82,7 @@
                         <h6 class="text-1000 mb-0">{{ $item->created_at->diffForHumans() }}</h6>
                       </div>
                     </td>
+                   
                     <td class="align-middle white-space-nowrap text-end pe-0">
                      
                       <div class="font-sans-serif btn-reveal-trigger">
@@ -90,16 +91,7 @@
                           <a class="dropdown-item" href="{{ route('admin.blog.edit', $item->id) }}">Edit</a>
                           <a class="dropdown-item" href="{{ route('admin.blog.status', $item->id) }}">Change status</a>
                           {{-- <a class="dropdown-item text-danger" href="{{ route('admin.team-member.destroy', $item->id) }}">Remove</a> --}}
-                            <a class="dropdown-item text-danger" href="{{ route('admin.blog.destroy',$item->id) }}"
-                                onclick="event.preventDefault();
-                                            document.getElementById('delete-form').submit();">
-                                {{ __('Remove') }}
-                            </a>
-    
-                            <form id="delete-form" action="{{ route('admin.blog.destroy', $item->id) }}" method="POST" class="d-none">
-                                @csrf
-                                @method('DELETE')
-                            </form>
+                            <a class="dropdown-item text-danger" onclick="return confirm('Are You Sure? This Action Can Not be Undone.')" href="{{ route('admin.blog.delete',$item->id) }}">Delete </a>
                         </div>
                       </div>
                     </td>

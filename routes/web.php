@@ -65,6 +65,7 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function(){
     
     //Blog Routes
     Route::resource('/blog', BlogPostController::class);
+    Route::get('/blog/delete/{id}', [BlogPostController::class, 'destroy'])->name('blog.delete');
     Route::get('/blog/status/{id}', [BlogPostController::class, 'statusChange'])->name('blog.status');
 
     Route::post('/category/create', [CategoryController::class, 'store'])->name('category.store');

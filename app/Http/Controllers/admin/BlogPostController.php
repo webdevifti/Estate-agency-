@@ -175,9 +175,18 @@ class BlogPostController extends Controller
      * @param  \App\Models\BlogPost  $blogPost
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BlogPost $blogPost)
+    public function destroy($id)
     {
         //
+        $find_blog = BlogPost::find($id);
+        $image_path = public_path('uploads/blog/thumbnails/'.$find_blog->thumbnails);
+        if (file_exists($image_path)) {
+            unlink($image_path);
+        }else{
+            // $request->thumbnail->move(public_path('uploads/blog/thumbnails/'), $imageName);
+        }
+        $find_blog->delete();
+         return back()->with('success', 'Post Deleted successfully');
     }
 
 
