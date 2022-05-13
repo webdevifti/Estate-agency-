@@ -62,9 +62,10 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function(){
     // Team Member Routes
     Route::resource('/team-member', TeamMemberController::class);
     Route::get('/team-member/status/{id}', [TeamMemberController::class, 'statusChange'])->name('team-member.status');
-
+    
     //Blog Routes
     Route::resource('/blog', BlogPostController::class);
+    Route::get('/blog/status/{id}', [BlogPostController::class, 'statusChange'])->name('blog.status');
 
     Route::post('/category/create', [CategoryController::class, 'store'])->name('category.store');
 

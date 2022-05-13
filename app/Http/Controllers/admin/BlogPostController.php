@@ -128,4 +128,19 @@ class BlogPostController extends Controller
     {
         //
     }
+
+
+
+    public function statusChange($id){
+        $blog = BlogPost::find($id);
+        if($blog->status == 1){
+            $blog->status = 0;
+            $blog->save();
+            return back()->with('success','Status Change successfully');
+        }else{
+            $blog->status = 1;
+            $blog->save();
+            return back()->with('success','Status Change successfully');
+        }
+    }
 }
