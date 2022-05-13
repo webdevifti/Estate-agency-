@@ -6,7 +6,7 @@
     <div class="mx-n6 bg-white px-6 pt-5 py-5 border-y border-300">
         <div class="row">
             <h3 class="mb-5">Edit A New Post</h3>
-            <a href="{{ route('admin.blog.index') }}">Go Back</a>
+            <a class="btn" href="{{ route('admin.blog.index') }}">Go Back</a>
 
 
             <form action="{{ route('admin.blog.update', $blog->id) }}" method="POST" enctype="multipart/form-data">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-md-3 position-relative">
                     <label class="form-label"> Thumbnails</label> 
-                    <input type="file" class="form-control" required name="thumbnail">
+                    <input type="file" class="form-control" name="thumbnail">
                     <img src="{{ asset('uploads/blog/thumbnails/'.$blog->thumbnails) }}" alt="">
                 </div>
                 </div>

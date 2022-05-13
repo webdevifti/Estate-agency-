@@ -63,20 +63,22 @@ class BlogPostController extends Controller
                 'created_at' => Carbon::now(),
 
             ]);
-            $request->validate([
-                'thumbnail' => 'mimes:jpg,png,jpeg'
-            ]);
-            $extension = $request->thumbnail->getClientOriginalExtension();
-            $imageName = $last_id.'.'.$extension;
-            // $image_path = public_path('uploads/properties/'.$properties_id->property_thumbnail);
-            // if (file_exists($image_path)) {
-            //     unlink($image_path);
-            // }
-            $prp = BlogPost::find($last_id);
-            $prp->thumbnails = $imageName;
-            $prp->save();
-            $request->thumbnail->move(public_path('uploads/blog/thumbnails/'), $imageName);
-            return back()->with('success', 'Post Published successfully');
+            if($request->thumbnail){
+                $request->validate([
+                    'thumbnail' => 'mimes:jpg,png,jpeg'
+                ]);
+                $extension = $request->thumbnail->getClientOriginalExtension();
+                $imageName = $last_id.'.'.$extension;
+                // $image_path = public_path('uploads/properties/'.$properties_id->property_thumbnail);
+                // if (file_exists($image_path)) {
+                //     unlink($image_path);
+                // }
+                $prp = BlogPost::find($last_id);
+                $prp->thumbnails = $imageName;
+                $prp->save();
+                $request->thumbnail->move(public_path('uploads/blog/thumbnails/'), $imageName);
+                return back()->with('success', 'Post Published successfully');
+            }
             
         }catch(Exception $e){
             return back()->with('error', 'Error Occured while publishing');
@@ -116,9 +118,55 @@ class BlogPostController extends Controller
      * @param  \App\Models\BlogPost  $blogPost
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BlogPost $blogPost)
+    public function update(Request $request, $blogPost)
     {
         //
+        $request->validate([
+            'title' => 'required|string',
+            'category_id' => 'required',
+            'article' => 'required',
+        ]);
+
+        try{
+            $slug = trim(strtolower(str_replace(' ','-', $request->title)));
+            $blog = BlogPost::find($blogPost);
+           
+           
+            if($request->thumbnail){
+                $request->validate([
+                    'thumbnail' => 'mimes:jpg,png,jpeg'
+                ]);
+                $blog->title = $request->title;
+                $blog->slug = $slug;
+                $blog->article = $request->article;
+                $blog->category_id = $request->category_id;
+                $blog->author_name = Auth::user()->name;
+                $extension = $request->thumbnail->getClientOriginalExtension();
+                $imageName = $blog->id.'.'.$extension;
+                $blog->thumbnails = $imageName;
+                $blog->save();
+                $image_path = public_path('uploads/blog/thumbnails/'.$blog->thumbnails);
+                if (file_exists($image_path)) {
+                    unlink($image_path);
+                }else{
+                    $request->thumbnail->move(public_path('uploads/blog/thumbnails/'), $imageName);
+                }
+               
+                return back()->with('success', 'Post Published successfully');
+            }else{
+                $blog->title = $request->title;
+                $blog->slug = $slug;
+                $blog->article = $request->article;
+                $blog->category_id = $request->category_id;
+                $blog->author_name = Auth::user()->name;
+                $blog->save();
+                return back()->with('success', 'Post Published successfully');
+            }
+            
+        }catch(Exception $e){
+            return back()->with('error', 'Error Occured while publishing');
+
+        }
     }
 
     /**
