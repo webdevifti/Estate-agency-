@@ -84,8 +84,10 @@
                     </td>
                     <td class="align-middle white-space-nowrap text-end pe-0">
                      
-                      <div class="font-sans-serif btn-reveal-trigger"><button class="btn btn-link fs--2 text-600 btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
+                      <div class="font-sans-serif btn-reveal-trigger">
+                        <button class="btn btn-link fs--2 text-600 btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                         <div class="dropdown-menu dropdown-menu-end border py-2">
+                          <a class="dropdown-item" href="{{ route('admin.blog.edit', $item->id) }}">Edit</a>
                           <a class="dropdown-item" href="{{ route('admin.blog.status', $item->id) }}">Change status</a>
                           {{-- <a class="dropdown-item text-danger" href="{{ route('admin.team-member.destroy', $item->id) }}">Remove</a> --}}
                             <a class="dropdown-item text-danger" href="{{ route('admin.blog.destroy',$item->id) }}"

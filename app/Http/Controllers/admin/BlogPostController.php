@@ -101,9 +101,12 @@ class BlogPostController extends Controller
      * @param  \App\Models\BlogPost  $blogPost
      * @return \Illuminate\Http\Response
      */
-    public function edit(BlogPost $blogPost)
+    public function edit($blogPost)
     {
         //
+        $getActiveCategory = Category::where('status', 1)->get();
+        $blog = BlogPost::find($blogPost);
+        return view('admin.pages.blog.edit', compact('getActiveCategory','blog'));
     }
 
     /**

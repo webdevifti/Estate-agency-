@@ -83,9 +83,9 @@
           </div>
         </nav>
         <nav class="navbar navbar-light navbar-top navbar-expand">
-          <div class="navbar-logo"><button class="btn navbar-toggler navbar-toggler-humburger-icon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button> <a class="navbar-brand me-1 me-sm-3" href="index.html">
+          <div class="navbar-logo"><button class="btn navbar-toggler navbar-toggler-humburger-icon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button> <a class="navbar-brand me-1 me-sm-3" href="{{ route('admin.panel') }}">
               <div class="d-flex align-items-center">
-                <div class="d-flex align-items-center"><img src="assets/img/icons/logo.png" alt="phoenix" width="32">
+                <div class="d-flex align-items-center"><img src="{{asset('admin/assets/img/icons/logo.png') }}" alt="phoenix" width="32">
                   <p class="logo-text ms-2 d-none d-sm-block">phoenix</p>
                 </div>
               </div>
@@ -99,7 +99,7 @@
               <li class="nav-item dropdown"><a class="nav-link notification-indicator notification-indicator-primary" id="navbarDropdownSettings" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="text-700" data-feather="settings" style="height:20px;width:20px;"></span></a></li>
               
               <li class="nav-item dropdown"><a class="nav-link lh-1 px-0 ms-5" id="navbarDropdownUser" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <div class="avatar avatar-l"><img class="rounded-circle" src="assets/img/team/57.png" alt=""></div>
+                  <div class="avatar avatar-l"><img class="rounded-circle" src="{{ asset('admin/assets/img/team/57.png') }}" alt=""></div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end py-0 dropdown-profile shadow border border-300" aria-labelledby="navbarDropdownUser">
                   <div class="card bg-white position-relative border-0">
@@ -141,7 +141,7 @@
     <footer class="footer">
         <div class="row g-0 justify-content-between align-items-center h-100 mb-3">
           <div class="col-12 col-sm-auto text-center">
-            <p class="mb-0 text-900">Thank you for creating with phoenix <span class="d-none d-sm-inline-block">|</span><br class="d-sm-none">2022 &copy; <a href="https://themewagon.com">Themewagon</a></p>
+            <p class="mb-0 text-900">Thank you for creating with phoenix <span class="d-none d-sm-inline-block">|</span><br class="d-sm-none">{{ date('Y') }} &copy; <a href="https://webdevifti.com">webdevifti</a></p>
           </div>
           <div class="col-12 col-sm-auto text-center">
             <p class="mb-0 text-600">v1.0.0</p>
